@@ -1,8 +1,15 @@
+import SectionTitle from "../../../Shared Components/SectionTitle";
 import ServiceTamplate from "./ServiceTamplate";
 
 const Services = () => {
     return (
         <div className="w-3/4 mx-auto">
+            <SectionTitle
+            description = 'Take our services as you need'
+            title = 'Our Services'
+            >
+                
+            </SectionTitle>
             {/* Digital Marketing service */}
             <ServiceTamplate
             serviceName = 'Digital Marketing'

@@ -6,11 +6,11 @@ const ServiceTamplate = ({ serviceImg, serviceDetails, serviceName, displayFlex 
         <div>
             <section className="dark:bg-gray-100 dark:text-gray-800">
                 <div className={containerClass}>
-                    <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-                        <img src={serviceImg} alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128" />
+                    <div className="flex items-center justify-center lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+                        <img src={serviceImg} alt="" className="object-contain rounded-3xl h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128" />
                     </div>
-                    <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
-                        <h1 className="text-5xl font-bold leading-none sm:text-6xl">{serviceName}
+                    <div className="flex flex-col justify-center  text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
+                        <h1 className="text-3xl md:text-5xl font-bold ">{serviceName}
                         </h1>
                         <p className="mt-6 mb-8 text-lg sm:mb-12">{serviceDetails}
                         </p>
