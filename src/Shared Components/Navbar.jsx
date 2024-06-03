@@ -30,7 +30,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-4">
-          <Link>
+          <Link to='/sign-up'>
             <a className="btn">Register</a>
           </Link>
           <Link to='/login'>

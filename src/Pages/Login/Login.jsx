@@ -1,3 +1,5 @@
+import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     return (
@@ -13,7 +15,7 @@ const Login = () => {
                         <div className="bg-black p-10 bg-opacity-65 rounded-xl">
                             <h2 className="text-2xl font-bold text-white sm:text-3xl">Welcome Back</h2>
                             <p className="max-w-xl mt-3 text-gray-300">
-                            We are thrilled to have you here! At Associate Pulse, our goal is to empower you with the insights and tools you need to thrive. Login now to access your personalized dashboard, stay updated with the latest trends, and connect with our vibrant community. Lets pulse forward together!
+                                We are thrilled to have you here! At Associate Pulse, our goal is to empower you with the insights and tools you need to thrive. Login now to access your personalized dashboard, stay updated with the latest trends, and connect with our vibrant community. Lets pulse forward together!
                             </p>
                         </div>
                     </div>
@@ -62,9 +64,16 @@ const Login = () => {
                                     </button>
                                 </div>
                             </form>
+                            <hr className="my-5" />
+                            <button className="w-full">
+                                <div className="flex items-center gap-5 justify-center border border-dashed border-gray-500 rounded-xl py-2">
+                                    <FcGoogle className="h-8 w-8"></FcGoogle>
+                                    <h2 className="font-semibold">Continue with Google</h2>
+                                </div>
+                            </button>
 
                             <p className="mt-6 text-sm text-center text-gray-400">
-                                Dont have an account yet? <a href="#" className="text-blue-500 focus:outline-none focus:underline hover:underline">Sign up</a>.
+                                Dont have an account yet? <Link to ='/sign-up' className="text-blue-500 focus:outline-none focus:underline hover:underline">Sign up</Link>.
                             </p>
                         </div>
                     </div>
