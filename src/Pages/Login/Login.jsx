@@ -1,7 +1,22 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
+    const {login} = useContext(AuthContext)
+    
+    const handleLogin =event=>{
+        event.preventDefault()
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        login(email, password)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+        })
+        }
     return (
         <div className="bg-white dark:bg-gray-900">
             <div className="flex justify-center h-screen">
@@ -31,7 +46,7 @@ const Login = () => {
                         </div>
 
                         <div className="mt-8">
-                            <form>
+                            <form onSubmit={handleLogin}>
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email Address</label>
                                     <input
@@ -59,7 +74,7 @@ const Login = () => {
                                 </div>
 
                                 <div className="mt-6">
-                                    <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                    <button type="submit" className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                         Sign in
                                     </button>
                                 </div>
