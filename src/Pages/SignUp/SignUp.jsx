@@ -2,24 +2,35 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from 'react-hot-toast';
+
+
 
 const SignUp = () => {
     const { createUser } = useContext(AuthContext)
     const {
         register,
         handleSubmit,
-        watch,
+        reset,
         formState: { errors },
     } = useForm()
 
     const onSubmit = (data) => {
         console.log(data)
+        createUser(data.email, data.password)
+        .then(result=>{
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            reset()
+            toast.success('User Created Success')
+        })
     }
 
 
 
     return (
         <div>
+            <Toaster></Toaster>
             <section className="bg-white dark:bg-gray-900">
                 <div className="flex justify-center min-h-screen">
                     <div
@@ -106,7 +117,7 @@ const SignUp = () => {
                                             required: true,
                                             minLength: 6,
                                             maxLength: 20,
-                                            pattern : /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])$/
+                                            pattern : /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
                                         })}
                                         placeholder="Enter your password"
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
