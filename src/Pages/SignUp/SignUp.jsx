@@ -12,11 +12,11 @@ const SignUp = () => {
 
                     <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
                         <div className="w-full">
-                        <div className="mx-auto">
-                            <img src="https://i.ibb.co/hs3dnWn/associate-pule-new-logo.png" alt="" />
-                        </div>
+                            <div className="mx-auto">
+                                <img src="https://i.ibb.co/hs3dnWn/associate-pule-new-logo.png" alt="" />
+                            </div>
                             <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
-                                Exited ? To Be Our Teammates ?
+                                Aww, I can see your excitement to be our member!
                             </h1>
 
                             <p className="mt-4 text-gray-500 dark:text-gray-400">
@@ -91,7 +91,7 @@ const SignUp = () => {
                                 </div>
                                 <div>
                                     <fieldset className="w-full space-y-1 dark:text-gray-800">
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Photo</label>
+                                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Photo</label>
                                         <div className="flex">
                                             <input type="file" name="files" id="files" className="px-3 py-2 border-2 border-dashed rounded-md dark:border-gray-300 dark:text-gray-600 dark:bg-gray-100" />
                                         </div>
@@ -99,12 +99,12 @@ const SignUp = () => {
 
                                 </div>
                                 <p className="mt-6 text-sm text-center text-gray-400">
-                                Already have an account ? <Link to ='/login' className="text-blue-500 focus:outline-none focus:underline hover:underline">Login</Link>.
-                            </p>
+                                    Already have an account ? <Link to='/login' className="text-blue-500 focus:outline-none focus:underline hover:underline">Login</Link>.
+                                </p>
 
                                 <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                     <span>Sign Up</span>
-                                   
+
                                 </button>
                             </form>
                         </div>
