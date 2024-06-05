@@ -1,22 +1,34 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
-    const {login} = useContext(AuthContext)
-    
-    const handleLogin =event=>{
+    const { login, googleLogin } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation
+
+    const handleLogin = event => {
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         login(email, password)
-        .then(result =>{
-            const user = result.user;
-            console.log(user);
-        })
-        }
+            .then(() => {
+                toast.success('Login success')
+                navigate(location?.state ? location.state : '/');
+            })
+    }
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(() => {
+                toast.success('Login success')
+                navigate(location?.state ? location.state : '/');
+            })
+
+    }
+
     return (
         <div className="bg-white dark:bg-gray-900">
             <div className="flex justify-center h-screen">
@@ -80,7 +92,7 @@ const Login = () => {
                                 </div>
                             </form>
                             <hr className="my-5" />
-                            <button className="w-full">
+                            <button onClick={handleGoogleLogin} className="w-full">
                                 <div className="flex items-center gap-5 justify-center border border-dashed border-gray-500 rounded-xl py-2">
                                     <FcGoogle className="h-8 w-8"></FcGoogle>
                                     <h2 className="font-semibold">Continue with Google</h2>
@@ -88,7 +100,7 @@ const Login = () => {
                             </button>
 
                             <p className="mt-6 text-sm text-center text-gray-400">
-                                Dont have an account yet? <Link to ='/sign-up' className="text-blue-500 focus:outline-none focus:underline hover:underline">Sign up</Link>.
+                                Dont have an account yet? <Link to='/sign-up' className="text-blue-500 focus:outline-none focus:underline hover:underline">Sign up</Link>.
                             </p>
                         </div>
                     </div>
