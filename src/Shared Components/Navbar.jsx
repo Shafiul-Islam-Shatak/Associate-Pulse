@@ -1,12 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../CustomHook/useAuth";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const user = useAuth()
+  const { logOut } = useContext(AuthContext)
+  const navigate = useNavigate()
   const navlinks =
     <>
       <li><Link>Home</Link></li>
       <li><Link>Dashboard</Link></li>
       <li><Link>Contact Us</Link></li>
     </>
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        toast.success("Log Out succesfull !");
+        navigate('/login')
+      })
+      .catch()
+  }
 
   return (
     <div>
@@ -29,14 +45,31 @@ const Navbar = () => {
             {navlinks}
           </ul>
         </div>
-        <div className="navbar-end gap-4">
-          <Link to='/sign-up'>
-            <a className="btn">Register</a>
-          </Link>
-          <Link to='/login'>
-            <a className="btn">Login</a>
-          </Link>
+        <div className="navbar-end ">
+
+          {
+            user &&
+            <div className="dropdown ">
+              <div tabIndex={0} role="button" className=" ">
+                <img className="rounded-full max-w-10 tooltip tooltip-left" data-tooltip-id='profile' data-tooltip-content={user.displayName} src={user ? user.photoURL : ''} alt="" />
+              </div>
+              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52 absolute -translate-x-40 ">
+                <li><Link>My Dashbord</Link></li>
+                <li><h1 onClick={handleLogout} className="font-bold">Log Out</h1></li>
+              </ul>
+            </div>
+
+
+          }
+          {
+            user ? '' :
+              <Link to='/login'>
+                <h1 className="btn font-bold">Log in</h1>
+              </Link>
+          }
+
         </div>
+
       </div>
     </div>
 

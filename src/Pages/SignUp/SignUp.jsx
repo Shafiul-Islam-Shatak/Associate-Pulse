@@ -1,30 +1,58 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../Provider/AuthProvider";
-import { useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 
 
 const SignUp = () => {
-    const { createUser } = useContext(AuthContext)
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm()
+    const navigate = useNavigate()
+    const location = useLocation()
+    const { createUser, updateUserProfile } = useContext(AuthContext)
+    const handleSignUp = async e => {
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        const name = form.name.value;
+        // const role = form.role.value;
+        // const designation = form.designation.value;
+        // const salary = form.salary.value;
+        // const bank_account = form.bank_account.value;
+        const image = form.image.files[0];
+        const formData = new FormData()
+        formData.append('image', image)
 
-    const onSubmit = (data) => {
-        console.log(data)
-        createUser(data.email, data.password)
-        .then(result=>{
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            reset()
-            toast.success('User Created Success')
-        })
+        try {
+            if (password.length < 6) {
+                toast.error("Your password should at lest 6")
+            }
+            else if (!/[A-Z]/.test(password)) {
+                toast.error("Your password must have an uppercase")
+            }
+            else if (!/[a-z]/.test(password)) {
+                toast.error("Your password must have a lowercase")
+            }
+            else if (!/[!@#$%^&*]/.test(password)) {
+                toast.error("Your password must have a special character")
+            }
+            else {
+
+                const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData)
+                console.log(data.data.display_url);
+                const result = await createUser(email, password)
+                console.log(result);
+                await updateUserProfile(name, data.data.display_url)
+                navigate(location?.state ? location.state : '/');
+                toast.success('User Create Success')
+            }
+        } catch (err) {
+            console.log(err);
+            toast.error(err.message)
+        }
     }
+
 
 
 
@@ -51,28 +79,28 @@ const SignUp = () => {
                                 Let’s get you all set up so you can verify your personal account and begin setting up your profile.
                             </p>
 
-                            <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                            <form onSubmit={handleSignUp} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Your Name</label>
                                     <input
-                                        {...register("name", { required: true })}
                                         type="text"
+                                        name="name"
                                         placeholder="John doe"
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
-                                    {errors.name && <span className="text-red-500">This field is required</span>}
+
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Your Role</label>
                                     <select defaultValue='Employee'
-                                        {...register("role", { required: true })}
+                                        name="role"
                                         className="select select-bordered w-full max-w-xs">
                                         <option disabled value='Employee' selected>Selecet Your Role</option>
                                         <option value='Employee'>Employee</option>
                                         <option value='HR'>HR</option>
                                     </select>
-                                    {errors.role && <span className="text-red-500">This field is required</span>}
+
 
                                 </div>
 
@@ -80,57 +108,49 @@ const SignUp = () => {
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Bank Account No</label>
                                     <input
                                         type="text"
-                                        {...register("bank_account", { required: true })}
+                                        name="bank_account"
                                         placeholder="XXX-XX-XXXX-XXX"
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
-                                    {errors.bank_account && <span className="text-red-500">This field is required</span>}
+
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Your Salary</label>
                                     <input
                                         type="number"
-                                        {...register("salary", { required: true })}
+                                        name="salary"
                                         placeholder="10,000"
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
-                                    {errors.salary && <span className="text-red-500">This field is required</span>}
+
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
                                     <input
                                         type="email"
-                                        {...register("email", { required: true })}
+                                        name="email"
                                         placeholder="johnsnow@example.com"
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
-                                    {errors.email && <span className="text-red-500">This field is required</span>}
+
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Password</label>
                                     <input
                                         type="password"
-                                        {...register("password", {
-                                            required: true,
-                                            minLength: 6,
-                                            maxLength: 20,
-                                            pattern : /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
-                                        })}
+                                        name="password"
                                         placeholder="Enter your password"
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
-                                    {errors.password?.type === 'required' && <span className="text-red-500">Password is required</span>}
-                                    {errors.password?.type === 'minLength' && <span className="text-red-500">Password must be 6 charecter</span>}
-                                    {errors.password?.type === 'maxLength' && <span className="text-red-500">Password not more than 20 charecter</span>}
-                                    {errors.password?.type === 'pattern' && <span className="text-red-500">Password must have one uppercase, one lowercase & one special charecter</span>}
+
                                 </div>
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Designation</label>
                                     <select defaultValue='N/A'
-                                        {...register("designation", { required: true })}
+                                        name="designation"
                                         className="select select-bordered w-full max-w-xs">
                                         <option disabled value='N/A' selected>Selecet Your Designation</option>
                                         <option value='Sales-Assistant'>Sales Assistant</option>
@@ -138,14 +158,16 @@ const SignUp = () => {
                                         <option value='Digital-marketer'>Digital Marketer</option>
                                         <option value='Web-Devloper'>Web Devloper</option>
                                     </select>
-                                    {errors.designation && <span className="text-red-500">This field is required</span>}
+
 
                                 </div>
                                 <div>
                                     <fieldset className="w-full space-y-1 dark:text-gray-800">
                                         <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Photo</label>
                                         <div className="flex">
-                                            <input type="file" name="files" id="files" className="px-3 py-2 border-2 border-dashed rounded-md dark:border-gray-300 dark:text-gray-600 dark:bg-gray-100" />
+                                            <input type="file"
+                                                name="image"
+                                                id="" className="px-3 py-2 border-2 border-dashed rounded-md dark:border-gray-300 dark:text-gray-600 dark:bg-gray-100" />
                                         </div>
                                     </fieldset>
 

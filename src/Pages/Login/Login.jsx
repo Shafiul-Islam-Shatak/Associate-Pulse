@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 const Login = () => {
     const { login, googleLogin } = useContext(AuthContext)
     const navigate = useNavigate()
-    const location = useLocation
+    const location = useLocation()
 
     const handleLogin = event => {
         event.preventDefault()
@@ -23,7 +23,7 @@ const Login = () => {
     const handleGoogleLogin = () => {
         googleLogin()
             .then(() => {
-                toast.success('Login success')
+                toast.success('Login success');
                 navigate(location?.state ? location.state : '/');
             })
 
