@@ -1,14 +1,15 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import useAxiosPublic from "../../CustomHook/useAxiosPublic";
 
 
 
 const SignUp = () => {
+    const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
-    const location = useLocation()
     const { createUser, updateUserProfile } = useContext(AuthContext)
     const handleSignUp = async e => {
         e.preventDefault()
@@ -16,10 +17,10 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const name = form.name.value;
-        // const role = form.role.value;
-        // const designation = form.designation.value;
-        // const salary = form.salary.value;
-        // const bank_account = form.bank_account.value;
+        const role = form.role.value;
+        const designation = form.designation.value;
+        const salary = form.salary.value;
+        const bank_account = form.bank_account.value;
         const image = form.image.files[0];
         const formData = new FormData()
         formData.append('image', image)
@@ -40,12 +41,25 @@ const SignUp = () => {
             else {
 
                 const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData)
-                console.log(data.data.display_url);
-                const result = await createUser(email, password)
+                const employeImg = data.data.display_url;
+                const result = await createUser(email, employeImg)
                 console.log(result);
                 await updateUserProfile(name, data.data.display_url)
-                navigate(location?.state ? location.state : '/');
-                toast.success('User Create Success')
+                navigate('/');
+
+                // post employe to db
+                const employeInfo = { name, email, role, designation, salary, bank_account, employeImg }
+                console.log(employeInfo);
+                try {
+                    const response = await axiosPublic.post('/employesData', employeInfo);
+                    if (response.data.insertedID) {
+                        form.reset();
+                        toast.success('User created successfully');
+                    }
+                } catch (error) {
+                    toast.error("Error posting employee data:", error);
+                    toast.error('Failed to create user');
+                }
             }
         } catch (err) {
             console.log(err);

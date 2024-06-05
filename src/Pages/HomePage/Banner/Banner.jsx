@@ -4,7 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 const Banner = () => {
     return (
         <div>
-            <Carousel autoPlay>
+            <Carousel showThumbs={false} autoPlay>
                 {/* 1st caro */}
                 <div>
                     <div className="hero min-h-screen" style={{ backgroundImage: 'url(https://img.freepik.com/premium-photo/office-table-with-business-tools-desktop-glass-work-paper_28629-275.jpg?w=996)' }}>
