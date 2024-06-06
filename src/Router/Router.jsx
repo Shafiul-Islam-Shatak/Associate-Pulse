@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import Secrete from "../Shared Components/Secrete";
 import WorkSheet from "../Pages/Dashbord/Worksheet/WorkSheet";
 import PaymentHistory from "../Pages/Dashbord/Payment/PaymentHistory";
+import AllEmployee from "../Pages/EmployeDashbord/AdminDashbord/AllEmployee";
 
   const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ import PaymentHistory from "../Pages/Dashbord/Payment/PaymentHistory";
         {
           path :'payment-history',
           element : <PaymentHistory></PaymentHistory>
+        },
+        {
+          path :'all-employse-list',
+          element : <AllEmployee></AllEmployee>
         }
       ]
     }

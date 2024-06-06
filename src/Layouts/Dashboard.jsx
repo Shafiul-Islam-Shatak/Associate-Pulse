@@ -2,10 +2,14 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { BiSolidSpreadsheet } from "react-icons/bi";
 import { MdPayment } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { GoPeople } from "react-icons/go";
+
 
 
 
 const Dashboard = () => {
+    // TODO : get admin value from db
+    const isAdmin = true;
     return (
         <div className="flex">
             {/* dashbord navbar */}
@@ -24,22 +28,36 @@ const Dashboard = () => {
                                 <Link to='/'><img src="https://i.ibb.co/d754Kxj/whitw-Blue-and-Black-Modern-Digital-Technology-Logo.png" alt="" /></Link>
                             </div>
                             {/* Sidebar content here */}
-                            <li>
-                                <NavLink to='/dashbord/worksheet'>
-                                    <div className="flex items-center gap-3">
-                                        <div><BiSolidSpreadsheet></BiSolidSpreadsheet></div>
-                                        <div><h2>Work Sheet</h2></div>
-                                    </div>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashbord/payment-history'>
-                                    <div className="flex items-center gap-3">
-                                        <div><MdPayment></MdPayment></div>
-                                        <div><h2>My Payment</h2></div>
-                                    </div>
-                                </NavLink>
-                            </li>
+                            {
+                                isAdmin ? <>
+                                    <li>
+                                        <NavLink to='/dashbord/all-employse-list'>
+                                            <div className="flex items-center gap-3">
+                                                <div><GoPeople></GoPeople></div>
+                                                <div><h2>All Employees</h2></div>
+                                            </div>
+                                        </NavLink>
+                                    </li>
+                                </> :
+                                    <>
+                                        <li>
+                                            <NavLink to='/dashbord/worksheet'>
+                                                <div className="flex items-center gap-3">
+                                                    <div><BiSolidSpreadsheet></BiSolidSpreadsheet></div>
+                                                    <div><h2>Work Sheet</h2></div>
+                                                </div>
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to='/dashbord/payment-history'>
+                                                <div className="flex items-center gap-3">
+                                                    <div><MdPayment></MdPayment></div>
+                                                    <div><h2>My Payment</h2></div>
+                                                </div>
+                                            </NavLink>
+                                        </li>
+                                    </>
+                            }
                         </ul>
 
                     </div>
