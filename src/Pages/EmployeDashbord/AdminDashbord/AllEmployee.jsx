@@ -17,19 +17,12 @@ const AllEmployee = () => {
     const handleDeleteEmploye = (employe) => {
         Swal.fire({
             title: "Are you sure?",
-            showClass: {
-                popup: `
-                  animate__animated
-                  animate__fadeInUp
-                  animate__faster
-                `
-            },
-            text: "You won't be able to revert this!",
+            text: "Fire this Employe ?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, Fire!"
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/employe/${employe._id}`)
@@ -37,23 +30,48 @@ const AllEmployee = () => {
                     if(res.data.deletedCount>0){
                         refetch()
                         Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
+                            position: "top-end",
                             icon: "success",
-                            hideClass: {
-                                popup: `
-                                  animate__animated
-                                  animate__fadeOutDown
-                                  animate__faster
-                                `
-                              }
-                        });
+                            title: `${employe.name} has been fired`,
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
                     }
                 })
             }
         });
 
     }
+    const handleMakeHr = (employe) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Make HR ?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/employe/hr/${employe._id}`)
+                .then(res=>{
+                    if(res.data.modifiedCount>0){
+                        refetch()
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: `${employe.name} is now HR`,
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                    }
+                })
+            }
+        });
+
+    }
+
+
 
     return (
         <div>
@@ -110,7 +128,7 @@ const AllEmployee = () => {
                                         <span>{employe.salary}</span>
                                     </td>
                                     <td>{employe.role === 'HR' ?
-                                        <></> : <button type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-gray-600 ">Make HR</button>
+                                        <></> : <button onClick={() => handleMakeHr(employe)} type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-gray-600 ">Make HR</button>
                                     }</td>
                                     <td>
                                         <button onClick={() => handleDeleteEmploye(employe)}
