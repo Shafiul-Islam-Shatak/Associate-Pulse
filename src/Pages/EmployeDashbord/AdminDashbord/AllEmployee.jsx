@@ -25,9 +25,9 @@ const AllEmployee = () => {
             confirmButtonText: "Yes, Fire!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/employe/${employe._id}`)
+                axiosSecure.patch(`/employe/${employe._id}`)
                 .then(res=>{
-                    if(res.data.deletedCount>0){
+                    if(res.data.modifiedCount>0){
                         refetch()
                         Swal.fire({
                             position: "top-end",
@@ -131,8 +131,11 @@ const AllEmployee = () => {
                                         <></> : <button onClick={() => handleMakeHr(employe)} type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-gray-600 ">Make HR</button>
                                     }</td>
                                     <td>
-                                        <button onClick={() => handleDeleteEmploye(employe)}
+                                        {
+                                            employe.status === 'fired' ? 
+                                            <span>Fired</span>:<button onClick={() => handleDeleteEmploye(employe)}
                                             type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-red-500 ">Fire</button>
+                                        }
                                     </td>
                                 </tr>
                             )
