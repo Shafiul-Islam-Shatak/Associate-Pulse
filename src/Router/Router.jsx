@@ -6,6 +6,8 @@ import Home from "../Pages/HomePage/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import Dashboard from "../Layouts/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import Secrete from "../Shared Components/Secrete";
 
   const router = createBrowserRouter([
     {
@@ -15,6 +17,10 @@ import Dashboard from "../Layouts/Dashboard";
         {
           path: '/',
           element : <Home></Home>
+        },
+        {
+          path :'/secrete',
+          element : <PrivateRoute><Secrete></Secrete></PrivateRoute>
         }
       ]
     },

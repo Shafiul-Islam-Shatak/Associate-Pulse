@@ -4,7 +4,7 @@ import DashbordNavigation from "../Shared Components/DashbordNavigation";
 const Dashboard = () => {
     return (
         <div className="flex ">
-            <div>
+            <div className="grow">
                 <DashbordNavigation></DashbordNavigation>
             </div>
             <div>
