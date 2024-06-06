@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Shared Components/SectionTitle";
 import useAxiosSecure from "../../../CustomHook/useAxiosSecure";
 import Swal from 'sweetalert2'
+import { CiEdit } from "react-icons/ci";
 
 
 const AllEmployee = () => {
     const axiosSecure = useAxiosSecure();
-    const { data: employees = [] , refetch} = useQuery({
+    const { data: employees = [], refetch } = useQuery({
         queryKey: ['employees'],
         queryFn: async () => {
             const res = await axiosSecure.get('/employesData');
@@ -26,18 +27,18 @@ const AllEmployee = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.patch(`/employe/${employe._id}`)
-                .then(res=>{
-                    if(res.data.modifiedCount>0){
-                        refetch()
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: `${employe.name} has been fired`,
-                            showConfirmButton: false,
-                            timer: 1500
-                          });
-                    }
-                })
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: `${employe.name} has been fired`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
             }
         });
 
@@ -54,18 +55,18 @@ const AllEmployee = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.patch(`/employe/hr/${employe._id}`)
-                .then(res=>{
-                    if(res.data.modifiedCount>0){
-                        refetch()
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: `${employe.name} is now HR`,
-                            showConfirmButton: false,
-                            timer: 1500
-                          });
-                    }
-                })
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: `${employe.name} is now HR`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
             }
         });
 
@@ -125,16 +126,23 @@ const AllEmployee = () => {
                                         <span className="badge badge-ghost badge-sm">{employe.role}</span>
                                     </td>
                                     <td>
-                                        <span>{employe.salary}</span>
+                                        <div className="flex items-center gap-2">
+                                            <div>
+                                                {employe.salary}
+                                            </div>
+                                            <div>
+                                                <CiEdit></CiEdit>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>{employe.role === 'HR' ?
                                         <></> : <button onClick={() => handleMakeHr(employe)} type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-gray-600 ">Make HR</button>
                                     }</td>
                                     <td>
                                         {
-                                            employe.status === 'fired' ? 
-                                            <span>Fired</span>:<button onClick={() => handleDeleteEmploye(employe)}
-                                            type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-red-500 ">Fire</button>
+                                            employe.status === 'fired' ?
+                                                <span>Fired</span> : <button onClick={() => handleDeleteEmploye(employe)}
+                                                    type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-red-500 ">Fire</button>
                                         }
                                     </td>
                                 </tr>

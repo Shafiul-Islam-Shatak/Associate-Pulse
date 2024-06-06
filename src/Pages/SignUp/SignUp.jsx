@@ -1,5 +1,5 @@
 import { Link,  useNavigate } from "react-router-dom";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -72,7 +72,6 @@ const SignUp = async () => {
 
     return (
         <div>
-            <Toaster></Toaster>
             <section className="bg-white dark:bg-gray-900">
                 <div className="flex justify-center min-h-screen">
                     <div

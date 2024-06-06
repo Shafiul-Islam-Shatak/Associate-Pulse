@@ -42,7 +42,6 @@ const Login = () => {
                     toast.error("Error posting employee data:", error);
                     toast.error('Failed to create user');
                 }
-                toast.success('Login success');
                 navigate(location?.state ? location.state : '/');
             })
 
