@@ -7,7 +7,7 @@ import useAxiosPublic from "../../CustomHook/useAxiosPublic";
 
 
 
-const SignUp = () => {
+const SignUp = async () => {
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
     const { createUser, updateUserProfile } = useContext(AuthContext)
@@ -46,6 +46,7 @@ const SignUp = () => {
                 console.log(result);
                 await updateUserProfile(name, data.data.display_url)
                 navigate('/');
+                toast.success('User created successfully');
 
                 // post employe to db
                 const employeInfo = { name, email, role, designation, salary, bank_account, employeImg }
@@ -54,7 +55,6 @@ const SignUp = () => {
                     const response = await axiosPublic.post('/employesData', employeInfo);
                     if (response.data.insertedID) {
                         form.reset();
-                        toast.success('User created successfully');
                     }
                 } catch (error) {
                     toast.error("Error posting employee data:", error);

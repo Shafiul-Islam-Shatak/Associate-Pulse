@@ -3,8 +3,10 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../CustomHook/useAxiosPublic";
 
 const Login = () => {
+    const axiosPublic = useAxiosPublic()
     const { login, googleLogin } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
@@ -20,9 +22,26 @@ const Login = () => {
                 navigate(location?.state ? location.state : '/');
             })
     }
-    const handleGoogleLogin = () => {
+    const handleGoogleLogin =async () => {
         googleLogin()
-            .then(() => {
+            .then(async(result) =>  {
+                const employeInfo = {
+                    name: result.user?.displayName,
+                    email: result.user?.email,
+                    role: 'Employee',
+                    designation: "Sales-Assistant",
+                    salary: 10000,
+                    bank_account: '42414245215',
+                    employeImg: result.user?.photoURL
+                }
+                console.log(employeInfo);
+                try {
+                 await axiosPublic.post('/employesData', employeInfo);
+                 toast.success('Login success')
+                } catch (error) {
+                    toast.error("Error posting employee data:", error);
+                    toast.error('Failed to create user');
+                }
                 toast.success('Login success');
                 navigate(location?.state ? location.state : '/');
             })
