@@ -8,6 +8,8 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Dashboard from "../Layouts/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import Secrete from "../Shared Components/Secrete";
+import WorkSheet from "../Pages/Dashbord/Worksheet/WorkSheet";
+import PaymentHistory from "../Pages/Dashbord/Payment/PaymentHistory";
 
   const router = createBrowserRouter([
     {
@@ -33,8 +35,18 @@ import Secrete from "../Shared Components/Secrete";
       element:<SignUp></SignUp>
     },
     {
-      path: 'dashbord',
-      element :<Dashboard></Dashboard>
+      path: "dashbord",
+      element: <Dashboard></Dashboard>,
+      children : [
+        {
+          path: 'worksheet',
+          element : <WorkSheet></WorkSheet>
+        },
+        {
+          path :'payment-history',
+          element : <PaymentHistory></PaymentHistory>
+        }
+      ]
     }
   ]);
 

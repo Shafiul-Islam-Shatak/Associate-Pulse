@@ -11,7 +11,6 @@ const Navbar = () => {
   const navlinks =
     <>
       <li><Link>Home</Link></li>
-      <li><Link>Dashboard</Link></li>
       <li><Link>Contact Us</Link></li>
     </>
 
@@ -37,7 +36,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="w-48">
-            <Link><img src="https://i.ibb.co/hs3dnWn/associate-pule-new-logo.png" alt="" /></Link>
+            <Link to='/'><img src="https://i.ibb.co/hs3dnWn/associate-pule-new-logo.png" alt="" /></Link>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -54,7 +53,7 @@ const Navbar = () => {
                 <img className="rounded-full max-w-10 tooltip tooltip-left" data-tooltip-id='profile' data-tooltip-content={user.displayName} src={user ? user.photoURL : ''} alt="" />
               </div>
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52 absolute -translate-x-40 ">
-                <li><Link>My Dashbord</Link></li>
+                <li><Link to='/dashbord'>My Dashbord</Link></li>
                 <li><h1 onClick={handleLogout} className="font-bold">Log Out</h1></li>
               </ul>
             </div>
