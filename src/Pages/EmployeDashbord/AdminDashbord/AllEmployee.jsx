@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Shared Components/SectionTitle";
 import useAxiosSecure from "../../../CustomHook/useAxiosSecure";
+import Swal from 'sweetalert2'
+
 
 const AllEmployee = () => {
     const axiosSecure = useAxiosSecure();
-    const { data: employees = [] } = useQuery({
+    const { data: employees = [] , refetch} = useQuery({
         queryKey: ['employees'],
         queryFn: async () => {
             const res = await axiosSecure.get('/employesData');
@@ -12,6 +14,47 @@ const AllEmployee = () => {
 
         }
     })
+    const handleDeleteEmploye = (employe) => {
+        Swal.fire({
+            title: "Are you sure?",
+            showClass: {
+                popup: `
+                  animate__animated
+                  animate__fadeInUp
+                  animate__faster
+                `
+            },
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/employe/${employe._id}`)
+                .then(res=>{
+                    if(res.data.deletedCount>0){
+                        refetch()
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success",
+                            hideClass: {
+                                popup: `
+                                  animate__animated
+                                  animate__fadeOutDown
+                                  animate__faster
+                                `
+                              }
+                        });
+                    }
+                })
+            }
+        });
+
+    }
+
     return (
         <div>
             <div>
@@ -39,10 +82,10 @@ const AllEmployee = () => {
                     </thead>
                     <tbody>
                         {
-                            employees.map((employe, index )=>
+                            employees.map((employe, index) =>
                                 <tr key={employe._id} >
                                     <td>
-                                        {index+1}
+                                        {index + 1}
                                     </td>
                                     <td>
                                         <div className="flex items-center gap-3">
@@ -70,7 +113,8 @@ const AllEmployee = () => {
                                         <></> : <button type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-gray-600 ">Make HR</button>
                                     }</td>
                                     <td>
-                                    <button type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-red-500 ">Fire</button>
+                                        <button onClick={() => handleDeleteEmploye(employe)}
+                                            type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-red-500 ">Fire</button>
                                     </td>
                                 </tr>
                             )
