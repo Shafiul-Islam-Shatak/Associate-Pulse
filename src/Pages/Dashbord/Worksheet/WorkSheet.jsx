@@ -1,6 +1,21 @@
+import { useState } from "react";
 import SectionTitle from "../../../Shared Components/SectionTitle";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const WorkSheet = () => {
+    const [startDate, setStartDate] = useState(new Date());
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        const form = e.target;
+        const task = form.task.value;
+        const hours = form.hours.value;
+        const date = form.date.value;
+        const workData = { task, hours, date }
+        console.log(workData);
+    }
     return (
         <div>
             <SectionTitle
@@ -8,34 +23,38 @@ const WorkSheet = () => {
                 description='Just give a overview of your completed task'
             ></SectionTitle>
             <div>
-                <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-                    <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
+                <section className="max-w-4xl p-6 mx-auto bg-base-200 rounded-md shadow-2xl dark:bg-gray-800 mt-10">
 
-                    <form>
-                        <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                    <form onSubmit={handleSubmit}>
+                        <div>
                             <div>
-                                <label className="text-gray-700 dark:text-gray-200" htmlFor="username">Username</label>
-                                <input id="username" type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                <label className="text-gray-700 w-full dark:text-gray-200" htmlFor="task">Task</label>
+                                <select
+                                    name="task"
+                                    className="select select-bordered w-full ">
+                                    <option disabled selected>Selecet Task</option>
+                                    <option value='Sales'>Sales</option>
+                                    <option value='Support'>Support</option>
+                                    <option value='Content'>Content</option>
+                                    <option value='Paper-work'>Paper-work</option>
+                                    <option value='Web-devlopment'>Web Devlopment</option>
+                                </select>
                             </div>
 
                             <div>
-                                <label className="text-gray-700 dark:text-gray-200" htmlFor="emailAddress">Email Address</label>
-                                <input id="emailAddress" type="email" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                <label className="text-gray-700 dark:text-gray-200" htmlFor="emailAddress">Hours Worked (hr)</label>
+                                <input name="hours" type="number" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                             </div>
 
-                            <div>
-                                <label className="text-gray-700 dark:text-gray-200" htmlFor="password">Password</label>
-                                <input id="password" type="password" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                            </div>
-
-                            <div>
-                                <label className="text-gray-700 dark:text-gray-200" htmlFor="passwordConfirmation">Password Confirmation</label>
-                                <input id="passwordConfirmation" type="password" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                            <div className="flex flex-col">
+                                <label className="text-gray-700 dark:text-gray-200" >Select Date</label>
+                                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} dateFormat='dd/MM/yyyy'
+                                    name="date" className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                             </div>
                         </div>
 
                         <div className="flex justify-end mt-6">
-                            <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Save</button>
+                            <button type="submit" className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Save</button>
                         </div>
                     </form>
                 </section>
