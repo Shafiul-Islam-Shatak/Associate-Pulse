@@ -5,26 +5,32 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../CustomHook/useAxiosPublic";
 
+
+
+
 const Login = () => {
     const axiosPublic = useAxiosPublic()
     const { login, googleLogin } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
 
-    const handleLogin = event => {
+    const handleLogin = async (event) => {
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        login(email, password)
-            .then(() => {
-                toast.success('Login success')
-                navigate(location?.state ? location.state : '/');
-            })
+        console.log(email, password);
+        try {
+            await login(email, password);
+            toast.success('Login success');
+            navigate(location?.state || '/');
+        } catch (error) {
+            toast.error(error.message);
+        }
     }
-    const handleGoogleLogin =async () => {
+    const handleGoogleLogin = async () => {
         googleLogin()
-            .then(async(result) =>  {
+            .then(async (result) => {
                 const employeInfo = {
                     name: result.user?.displayName,
                     email: result.user?.email,
@@ -36,8 +42,8 @@ const Login = () => {
                 }
                 console.log(employeInfo);
                 try {
-                 await axiosPublic.post('/employesData', employeInfo);
-                 toast.success('Login success')
+                    await axiosPublic.post('/employesData', employeInfo);
+                    toast.success('Login success')
                 } catch (error) {
                     toast.error("Error posting employee data:", error);
                     toast.error('Failed to create user');

@@ -11,6 +11,7 @@ import Secrete from "../Shared Components/Secrete";
 import WorkSheet from "../Pages/Dashbord/Worksheet/WorkSheet";
 import PaymentHistory from "../Pages/Dashbord/Payment/PaymentHistory";
 import AllEmployee from "../Pages/EmployeDashbord/AdminDashbord/AllEmployee";
+import AdminRoute from "./AdminRoute";
 
   const router = createBrowserRouter([
     {
@@ -49,7 +50,7 @@ import AllEmployee from "../Pages/EmployeDashbord/AdminDashbord/AllEmployee";
         },
         {
           path :'all-employse-list',
-          element : <AllEmployee></AllEmployee>
+          element : <AdminRoute><AllEmployee></AllEmployee></AdminRoute>
         }
       ]
     }

@@ -50,7 +50,7 @@ const SignUp =  () => {
                 toast.success('User created successfully');
 
                 // post employe to db
-                const employeInfo = { name, email, role, designation, salary, bank_account, employeImg }
+                const employeInfo = { name, email, role, designation, salary, bank_account, employeImg , password }
                 console.log(employeInfo);
                 try {
                     const response = await axiosPublic.post('/employesData', employeInfo);

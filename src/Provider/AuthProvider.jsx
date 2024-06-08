@@ -36,17 +36,17 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        const unsubscribe = onAuthStateChanged(auth,async currentUser => {
             setUser(currentUser)
             if (currentUser) {
                 // get token and store client
-                const employInfo ={email: currentUser.email}
-                axiosPublic.post('/jwt',employInfo )
-                .then(res=>{
-                    if(res.data.token){
-                        localStorage.setItem('access-token' , res.data.token)
-                    }
-                })
+                const employInfo = { email: currentUser.email }
+               await axiosPublic.post('/jwt', employInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token)
+                        }
+                    })
             }
             else {
                 // remove token
