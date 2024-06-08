@@ -3,13 +3,14 @@ import { BiSolidSpreadsheet } from "react-icons/bi";
 import { MdPayment } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoPeople } from "react-icons/go";
+import useAdmin from "../CustomHook/useAdmin";
 
 
 
 
 const Dashboard = () => {
     // TODO : get admin value from db
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
     return (
         <div className="flex">
             {/* dashbord navbar */}

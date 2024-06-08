@@ -1,4 +1,4 @@
-import { Link,  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import axios from "axios";
 import { useContext } from "react";
@@ -7,10 +7,11 @@ import useAxiosPublic from "../../CustomHook/useAxiosPublic";
 
 
 
-const SignUp = async () => {
-    const axiosPublic = useAxiosPublic()
-    const navigate = useNavigate()
-    const { createUser, updateUserProfile } = useContext(AuthContext)
+const SignUp =  () => {
+    const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+
     const handleSignUp = async e => {
         e.preventDefault()
         const form = e.target;
