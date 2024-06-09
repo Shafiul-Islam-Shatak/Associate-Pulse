@@ -4,13 +4,14 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosPublic from "../../CustomHook/useAxiosPublic";
+import { PropagateLoader } from "react-spinners";
 
 
 
-const SignUp =  () => {
+const SignUp = () => {
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, loading } = useContext(AuthContext);
 
     const handleSignUp = async e => {
         e.preventDefault()
@@ -23,6 +24,7 @@ const SignUp =  () => {
         const salary = form.salary.value;
         const bank_account = form.bank_account.value;
         const image = form.image.files[0];
+        console.log(email, password);
         const formData = new FormData()
         formData.append('image', image)
 
@@ -43,14 +45,14 @@ const SignUp =  () => {
 
                 const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData)
                 const employeImg = data.data.display_url;
-                const result = await createUser(email, employeImg)
+                const result = await createUser(email, password)
                 console.log(result);
                 await updateUserProfile(name, data.data.display_url)
                 navigate('/');
                 toast.success('User created successfully');
 
                 // post employe to db
-                const employeInfo = { name, email, role, designation, salary, bank_account, employeImg , password }
+                const employeInfo = { name, email, role, designation, salary, bank_account, employeImg, password }
                 console.log(employeInfo);
                 try {
                     const response = await axiosPublic.post('/employesData', employeInfo);
@@ -191,7 +193,10 @@ const SignUp =  () => {
                                 </p>
 
                                 <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                    <span>Sign Up</span>
+                                    <span>
+                                        {loading ? <PropagateLoader className="mx-auto" color="#ffffff" />: 'Sign Up'
+                                        }
+                                    </span>
 
                                 </button>
                             </form>

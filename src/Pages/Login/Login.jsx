@@ -26,6 +26,7 @@ const Login = () => {
             navigate(location?.state || '/');
         } catch (error) {
             toast.error(error.message);
+            console.log(error)
         }
     }
     const handleGoogleLogin = async () => {

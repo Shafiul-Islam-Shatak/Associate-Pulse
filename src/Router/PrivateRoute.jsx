@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
+import { ClimbingBoxLoader } from "react-spinners";
 
 
 const PrivateRoute = ({ children }) => {
@@ -8,7 +9,7 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
     if (loading) {
         return <div>
-            <div className="w-16 m-auto h-16 border-4 border-dashed rounded-full animate-spin border-violet-600"></div>
+            <div className="w-16 m-auto h-16 "><ClimbingBoxLoader color="#36d7b7" /></div>
         </div>
     }
     if (user) {

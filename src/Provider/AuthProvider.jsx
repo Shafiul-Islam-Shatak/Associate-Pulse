@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
     }
     const login = (email, password) => {
         setLoading(true)
-        return signInWithEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth ,email, password)
     }
     const googleLogin = () => {
         return signInWithPopup(auth, googleProvider)
@@ -36,12 +36,13 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth,async currentUser => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser)
             if (currentUser) {
                 // get token and store client
-                const employInfo = { email: currentUser.email }
-               await axiosPublic.post('/jwt', employInfo)
+                const employInfo = { email: currentUser.email };
+                console.log(employInfo);
+                await axiosPublic.post('/jwt', employInfo)
                     .then(res => {
                         if (res.data.token) {
                             localStorage.setItem('access-token', res.data.token)

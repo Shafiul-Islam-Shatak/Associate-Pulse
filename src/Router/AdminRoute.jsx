@@ -2,15 +2,17 @@ import { useContext } from "react";
 import useAdmin from "../CustomHook/useAdmin";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
+import { ClimbingBoxLoader } from "react-spinners";
 
-const AdminRoute = ( children ) => {
+
+const AdminRoute = ({children}  ) => {
     const [isAdmin, isAdminLoading] = useAdmin()
 
     const { user, loading } = useContext(AuthContext);
     const location = useLocation();
     if (loading || isAdminLoading) {
         return <div>
-            <div className="w-16 m-auto h-16 border-4 border-dashed rounded-full animate-spin border-violet-600"></div>
+            <div className="w-16 mx-auto mt-50 h-16"><ClimbingBoxLoader color="#36d7b7" /></div>
         </div>
     }
     if (user && isAdmin) {
