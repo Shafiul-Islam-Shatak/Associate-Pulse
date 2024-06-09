@@ -19,7 +19,7 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        // console.log(email, password);
         try {
             await login(email, password);
             toast.success('Login success');
@@ -42,7 +42,7 @@ const Login = () => {
                     employeImg: result.user?.photoURL,
                     status : 'Not verified'
                 }
-                console.log(employeInfo);
+                // console.log(employeInfo);
                 try {
                     await axiosPublic.post('/employesData', employeInfo);
                     toast.success('Login success')
