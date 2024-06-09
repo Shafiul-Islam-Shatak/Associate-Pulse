@@ -71,7 +71,7 @@ const Dashboard = () => {
                                 <li><h1 onClick={handleLogout} className="font-bold">Log Out                                    <FaArrowRightToBracket className="ml-2"></FaArrowRightToBracket>
                                 </h1></li>
                             </div>
-                        </ul>
+                        </ul> 
 
                     </div>
                 </div>

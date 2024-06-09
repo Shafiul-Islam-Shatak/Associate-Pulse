@@ -12,6 +12,10 @@ import WorkSheet from "../Pages/Dashbord/Worksheet/WorkSheet";
 import PaymentHistory from "../Pages/Dashbord/Payment/PaymentHistory";
 import AllEmployee from "../Pages/EmployeDashbord/AdminDashbord/AllEmployee";
 import AdminRoute from "./AdminRoute";
+import HrRoute from "./HrRoute";
+import MyEmployees from "../Pages/EmployeDashbord/HRdashbord/MyEmployees";
+import EmployeeWorkDetails from "../Pages/EmployeDashbord/HRdashbord/EmployeeWorkDetails";
+import Progress from "../Pages/EmployeDashbord/HRdashbord/Progress";
 
   const router = createBrowserRouter([
     {
@@ -51,7 +55,19 @@ import AdminRoute from "./AdminRoute";
         {
           path :'all-employse-list',
           element : <AdminRoute><AllEmployee></AllEmployee></AdminRoute>
-        }
+        },
+        {
+          path :'employee-list',
+          element : <HrRoute><MyEmployees></MyEmployees></HrRoute>
+        },
+        {
+          path :'details',
+          element : <HrRoute><EmployeeWorkDetails></EmployeeWorkDetails></HrRoute>
+        },
+        {
+          path :'progress',
+          element : <HrRoute><Progress></Progress></HrRoute>
+        },
       ]
     }
   ]);
