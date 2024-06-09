@@ -1,10 +1,15 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import useAdmin from "../CustomHook/useAdmin";
 import AdminNavbar from "../Pages/EmployeDashbord/AdminDashbord/AdminNavbar";
 import EmployeeNavbar from "../Pages/EmployeDashbord/Employee/EmployeeNavbar";
 import useHR from "../CustomHook/useHR";
 import HRNavbar from "../Pages/EmployeDashbord/HRdashbord/HRNavbar";
+import useAuth from "../CustomHook/useAuth";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
+import { FaArrowRightToBracket } from "react-icons/fa6";
 
 
 
@@ -13,6 +18,22 @@ const Dashboard = () => {
     // TODO : get admin value from db
     const [isAdmin] = useAdmin();
     const [isHR] = useHR();
+    const user = useAuth()
+    const { logOut } = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    console.log(user);
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+                toast.success("Log Out succesfull !");
+                navigate('/login')
+            })
+            .catch()
+    }
+
+
     return (
         <div className="flex">
             {/* dashbord navbar */}
@@ -30,12 +51,26 @@ const Dashboard = () => {
                             <div className="w-40 mb-5 mt-2 lg:mb-10 lg:mt-5">
                                 <Link to='/'><img src="https://i.ibb.co/d754Kxj/whitw-Blue-and-Black-Modern-Digital-Technology-Logo.png" alt="" /></Link>
                             </div>
+                            <div>
+                                <div className="avatar online">
+                                    <div className="w-24 rounded-full ml-8 drop-shadow shadow-lg shadow-slate-400">
+                                        <img src={user?.photoURL} />
+                                    </div>
+                                </div>
+                                <div className="my-10">
+                                    <h2 className="font-semibold text-lg">Hii , {user?.displayName} Welcome back to the work again</h2>
+                                </div>
+                            </div>
                             {/* Sidebar content here */}
                             {
                                 isAdmin ? <AdminNavbar></AdminNavbar>
                                     : isHR ? <HRNavbar></HRNavbar>
                                         : <EmployeeNavbar></EmployeeNavbar>
                             }
+                            <div className="mt-10">
+                                <li><h1 onClick={handleLogout} className="font-bold">Log Out                                    <FaArrowRightToBracket className="ml-2"></FaArrowRightToBracket>
+                                </h1></li>
+                            </div>
                         </ul>
 
                     </div>
