@@ -24,7 +24,7 @@ const SignUp = () => {
         const salary = form.salary.value;
         const bank_account = form.bank_account.value;
         const image = form.image.files[0];
-        console.log(email, password);
+        const status = 'Not verified'
         const formData = new FormData()
         formData.append('image', image)
 
@@ -47,12 +47,12 @@ const SignUp = () => {
                 const employeImg = data.data.display_url;
                 const result = await createUser(email, password)
                 console.log(result);
-                await updateUserProfile(name, data.data.display_url)
+                await updateUserProfile(name, employeImg)
                 navigate('/');
                 toast.success('User created successfully');
 
                 // post employe to db
-                const employeInfo = { name, email, role, designation, salary, bank_account, employeImg, password }
+                const employeInfo = { name, email, role, designation, salary, bank_account, employeImg, status }
                 console.log(employeInfo);
                 try {
                     const response = await axiosPublic.post('/employesData', employeInfo);

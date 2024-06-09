@@ -39,7 +39,8 @@ const Login = () => {
                     designation: "Sales-Assistant",
                     salary: 10000,
                     bank_account: '42414245215',
-                    employeImg: result.user?.photoURL
+                    employeImg: result.user?.photoURL,
+                    status : 'Not verified'
                 }
                 console.log(employeInfo);
                 try {

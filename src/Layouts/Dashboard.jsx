@@ -1,9 +1,10 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
-import { BiSolidSpreadsheet } from "react-icons/bi";
-import { MdPayment } from "react-icons/md";
+import { Link, Outlet } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { GoPeople } from "react-icons/go";
 import useAdmin from "../CustomHook/useAdmin";
+import AdminNavbar from "../Pages/EmployeDashbord/AdminDashbord/AdminNavbar";
+import EmployeeNavbar from "../Pages/EmployeDashbord/Employee/EmployeeNavbar";
+import useHR from "../CustomHook/useHR";
+import HRNavbar from "../Pages/EmployeDashbord/HRdashbord/HRNavbar";
 
 
 
@@ -11,6 +12,7 @@ import useAdmin from "../CustomHook/useAdmin";
 const Dashboard = () => {
     // TODO : get admin value from db
     const [isAdmin] = useAdmin();
+    const [isHR] = useHR();
     return (
         <div className="flex">
             {/* dashbord navbar */}
@@ -30,34 +32,9 @@ const Dashboard = () => {
                             </div>
                             {/* Sidebar content here */}
                             {
-                                isAdmin ? <>
-                                    <li>
-                                        <NavLink to='/dashbord/all-employse-list'>
-                                            <div className="flex items-center gap-3">
-                                                <div><GoPeople></GoPeople></div>
-                                                <div><h2>All Employees</h2></div>
-                                            </div>
-                                        </NavLink>
-                                    </li>
-                                </> :
-                                    <>
-                                        <li>
-                                            <NavLink to='/dashbord/worksheet'>
-                                                <div className="flex items-center gap-3">
-                                                    <div><BiSolidSpreadsheet></BiSolidSpreadsheet></div>
-                                                    <div><h2>Work Sheet</h2></div>
-                                                </div>
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to='/dashbord/payment-history'>
-                                                <div className="flex items-center gap-3">
-                                                    <div><MdPayment></MdPayment></div>
-                                                    <div><h2>My Payment</h2></div>
-                                                </div>
-                                            </NavLink>
-                                        </li>
-                                    </>
+                                isAdmin ? <AdminNavbar></AdminNavbar>
+                                    : isHR ? <HRNavbar></HRNavbar>
+                                        : <EmployeeNavbar></EmployeeNavbar>
                             }
                         </ul>
 

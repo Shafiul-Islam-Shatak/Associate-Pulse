@@ -135,7 +135,7 @@ const AllEmployee = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{employe.role === 'HR' ?
+                                    <td>{employe.role === 'HR' || employe.role ==='Admin' ?
                                         <></> : <button onClick={() => handleMakeHr(employe)} type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-gray-600 ">Make HR</button>
                                     }</td>
                                     <td>
