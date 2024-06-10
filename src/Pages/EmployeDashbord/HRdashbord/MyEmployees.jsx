@@ -6,10 +6,14 @@ import { ImCross } from "react-icons/im";
 import { MdVerified } from "react-icons/md";
 import { Tooltip } from 'react-tooltip'
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 
 
 const MyEmployees = () => {
+    const [startDate, setStartDate] = useState(new Date());
     const [selectedEmploye, setSelectedEmploye] = useState(null);
     const axiosSecure = useAxiosSecure();
     const { data: employees = [], refetch } = useQuery({
@@ -82,7 +86,7 @@ const MyEmployees = () => {
         console.log(employe);
         setSelectedEmploye(employe);
         document.getElementById('my_modal_3').showModal();
-        console.log(selectedEmploye.name);
+        // console.log(selectedEmploye.name);
     };
 
 
@@ -150,7 +154,7 @@ const MyEmployees = () => {
                                     </td>
                                     <td>{<button
                                         onClick={() => handlePayNowClick(employe)}
-                                        disabled={employe.status !== 'Verified'} type="button" className={`px-5 py-2 font-semibold rounded-full ${employe.status === 'Verified' ? '' : 'bg-gray-200'} text-white bg-gray-600 `}>Pay Now</button>
+                                        disabled={employe.status !== 'Verified'} type="button" className={`px-5 py-2 font-semibold rounded-full ${employe.status === 'Verified' ? 'bg-gray-600' : 'bg-gray-200'} text-white  `}>Pay Now</button>
                                     }</td>
                                     <td>
                                         {
@@ -176,27 +180,68 @@ const MyEmployees = () => {
                 {/* You can open the modal using document.getElementById('ID').showModal() method */}
                 <dialog id="my_modal_3" className="modal">
                     <div className="modal-box">
-                        <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
-                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                        </form>
-                        <h3 className="font-bold text-lg">You are paying {selectedEmploye?.name}</h3>
-                        <h2 className="mt-3">Bank Account : {selectedEmploye?.bank_account}</h2>
-                        <h2 className="mt-1">Ammount : {selectedEmploye?.salary}</h2>
-                        <div>
-                            <label className="block mb-2 ">You paying for selected month</label>
-                            <select 
-                                name="role"
-                                className="select select-bordered w-full max-w-xs">
-                                <option disabled defaultValue={''} selected>Selecet Your Role</option>
-                                
 
-                            </select>
-                        </div>
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        <h3 className="font-bold text-lg">Make Payment</h3>
+
+                        <form >
+                            <div>
+                                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Employee Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={selectedEmploye?.name}
+                                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                />
+                            </div>
+
+                            <div className="mt-6">
+                                <div className="flex justify-between mb-2">
+                                    <label className="text-sm text-gray-600 dark:text-gray-200">Bank Account</label>
+
+                                </div>
+                                <input
+                                    type="text"
+                                    name="bank_account"
+                                    value={selectedEmploye?.bank_account}
+                                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                />
+                            </div>
+                            <div className="mt-6">
+                                <div className="flex justify-between mb-2">
+                                    <label className="text-sm text-gray-600 dark:text-gray-200">Salary</label>
+
+                                </div>
+                                <input
+                                    type="text"
+                                    name="bank_account"
+                                    value={selectedEmploye?.salary}
+                                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="text-gray-700 dark:text-gray-200">Select Month</label>
+                                <DatePicker
+                                    selected={startDate}
+                                    onChange={(date) => setStartDate(date)}
+                                    dateFormat="MM/yyyy"
+                                    showMonthYearPicker
+                                    name="date"
+                                    className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                />
+                            </div>
+                            <div className="mt-6">
+                                <button type="submit" className="w-full px-4 py-2 bg-gray-600 text-white">
+                                    Confirm Payment
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </dialog>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 
