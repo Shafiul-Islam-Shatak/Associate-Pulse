@@ -61,8 +61,9 @@ import Progress from "../Pages/EmployeDashbord/HRdashbord/Progress";
           element : <HrRoute><MyEmployees></MyEmployees></HrRoute>
         },
         {
-          path :'details',
-          element : <HrRoute><EmployeeWorkDetails></EmployeeWorkDetails></HrRoute>
+          path :'employee-list/details/:id',
+          element : <HrRoute><EmployeeWorkDetails></EmployeeWorkDetails></HrRoute>,
+          // loader :({params})=>fetch(`details/${params.id}`)
         },
         {
           path :'progress',

@@ -1,8 +1,11 @@
 
-const EmployeeWorkDetails = () => {
+const EmployeeWorkDetails = async () => {
+ 
+
+
     return (
         <div>
-            <h2>my employ worksheet from hr</h2>
+            {/* <h2>{employe.name}</h2> */}
         </div>
     );
 };

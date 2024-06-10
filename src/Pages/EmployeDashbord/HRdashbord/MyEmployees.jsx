@@ -9,6 +9,7 @@ import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 
 const MyEmployees = () => {
@@ -68,7 +69,7 @@ const MyEmployees = () => {
         const salary = form.salary.value;
         const bank_account = form.bank_account.value;
         const month = form.month.value;
-        const paymentInfo = {name, email, salary, bank_account, month}
+        const paymentInfo = { name, email, salary, bank_account, month }
         handleCloseModal()
 
         Swal.fire({
@@ -93,7 +94,7 @@ const MyEmployees = () => {
                                 timer: 1500
                             });
                         }
-                        else{
+                        else {
                             toast.error(res.data.message)
                         }
                     })
@@ -188,6 +189,11 @@ const MyEmployees = () => {
                                                 ></MdVerified>
                                         }
                                     </td>
+                                    <td>
+                                        <Link to={`details/${employe._id}`}>
+                                            <button className="px-5 py-2 font-semibold rounded-full bg-gray-600 text-white">View Details</button>
+                                        </Link>
+                                    </td>
                                 </tr>
                             )
                         }
@@ -199,7 +205,7 @@ const MyEmployees = () => {
                     <div className="modal-box">
 
                         {/* if there is a button in form, it will close the modal */}
-                        <button  onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        <button onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                         <h3 className="font-bold text-lg">Make Payment</h3>
 
                         <form onSubmit={handleConfirmPayment} >

@@ -61,7 +61,7 @@ const Login = () => {
                 <div
                     className="hidden bg-cover lg:block lg:w-2/3"
                     style={{
-                        backgroundImage: 'url(https://img.freepik.com/free-vector/vector-illustration-man-working-computer_1441-26.jpg?t=st=1717416190~exp=1717419790~hmac=f1a17d9427cfe65db743cef2542a90a59e0cab08aa68200a6c7c11df5784f6c0&w=740)',
+                        backgroundImage: 'url(https://i.ibb.co/pbSfx62/login.png)',
                     }}
                 >
                     <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
