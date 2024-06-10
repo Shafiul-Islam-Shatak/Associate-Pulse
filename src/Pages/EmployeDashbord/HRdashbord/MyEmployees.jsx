@@ -5,25 +5,26 @@ import Swal from 'sweetalert2'
 import { ImCross } from "react-icons/im";
 import { MdVerified } from "react-icons/md";
 import { Tooltip } from 'react-tooltip'
-import { useState } from "react";
+import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-
+import toast from "react-hot-toast";
 
 
 const MyEmployees = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [selectedEmploye, setSelectedEmploye] = useState(null);
+    const modalRef = useRef(null);
     const axiosSecure = useAxiosSecure();
     const { data: employees = [], refetch } = useQuery({
         queryKey: ['employees'],
         queryFn: async () => {
             const res = await axiosSecure.get('/myEmployess');
-            console.log(res);
             return res.data;
         }
     })
+
+
     const handleVerifiy = (employe) => {
         Swal.fire({
             title: "Are you sure?",
@@ -52,45 +53,61 @@ const MyEmployees = () => {
         });
 
     }
-    // const handlePayment = (employe) => {
-    //     Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "Make HR ?",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Yes"
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             axiosSecure.patch(`/myEmploye/hr/${employe._id}`)
-    //                 .then(res => {
-    //                     if (res.data.modifiedCount > 0) {
-    //                         refetch()
-    //                         Swal.fire({
-    //                             position: "top-end",
-    //                             icon: "success",
-    //                             title: `${employe.name} is now HR`,
-    //                             showConfirmButton: false,
-    //                             timer: 1500
-    //                         });
-    //                     }
-    //                 })
-    //         }
-    //     });
 
-    // }
+    const handleCloseModal = () => {
+        if (modalRef.current) {
+            modalRef.current.close();
+        }
+    };
+
+    const handleConfirmPayment = event => {
+        event.preventDefault()
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const salary = form.salary.value;
+        const bank_account = form.bank_account.value;
+        const month = form.month.value;
+        const paymentInfo = {name, email, salary, bank_account, month}
+        handleCloseModal()
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Are you sure to pay ${salary} BDT to ${name}`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Confirm"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.post(`/employes/peyment`, paymentInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: `Payment Success`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                        else{
+                            toast.error(res.data.message)
+                        }
+                    })
+            }
+        });
+
+    }
 
 
     const handlePayNowClick = (employe) => {
-        console.log(employe);
         setSelectedEmploye(employe);
         document.getElementById('my_modal_3').showModal();
         // console.log(selectedEmploye.name);
     };
-
-
-
 
     return (
         <div>
@@ -178,14 +195,14 @@ const MyEmployees = () => {
                     </tbody>
                 </table>
                 {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                <dialog id="my_modal_3" className="modal">
+                <dialog id="my_modal_3" className="modal" ref={modalRef}>
                     <div className="modal-box">
 
                         {/* if there is a button in form, it will close the modal */}
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        <button  onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                         <h3 className="font-bold text-lg">Make Payment</h3>
 
-                        <form >
+                        <form onSubmit={handleConfirmPayment} >
                             <div>
                                 <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Employee Name</label>
                                 <input
@@ -193,6 +210,15 @@ const MyEmployees = () => {
                                     name="name"
                                     value={selectedEmploye?.name}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                />
+                            </div>
+                            <div>
+                                <label className=" mb-2 text-sm text-gray-600 dark:text-gray-200 hidden">Employee email</label>
+                                <input
+                                    type="text"
+                                    name="email"
+                                    value={selectedEmploye?.email}
+                                    className="hidden  w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                 />
                             </div>
 
@@ -215,7 +241,7 @@ const MyEmployees = () => {
                                 </div>
                                 <input
                                     type="text"
-                                    name="bank_account"
+                                    name="salary"
                                     value={selectedEmploye?.salary}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                 />
@@ -228,7 +254,7 @@ const MyEmployees = () => {
                                     onChange={(date) => setStartDate(date)}
                                     dateFormat="MM/yyyy"
                                     showMonthYearPicker
-                                    name="date"
+                                    name="month"
                                     className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
