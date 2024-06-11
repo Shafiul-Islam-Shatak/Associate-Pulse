@@ -17,6 +17,7 @@ import MyEmployees from "../Pages/EmployeDashbord/HRdashbord/MyEmployees";
 import EmployeeWorkDetails from "../Pages/EmployeDashbord/HRdashbord/EmployeeWorkDetails";
 import Progress from "../Pages/EmployeDashbord/HRdashbord/Progress";
 import ContactForm from "../Pages/ContactUs/ContactForm";
+import ContactList from "../Pages/EmployeDashbord/AdminDashbord/ContactList";
 
   const router = createBrowserRouter([
     {
@@ -33,7 +34,7 @@ import ContactForm from "../Pages/ContactUs/ContactForm";
         },
         {
           path :'/contact',
-          element : <PrivateRoute><ContactForm></ContactForm></PrivateRoute>
+          element : <ContactForm></ContactForm>
         }
       ]
     },
@@ -60,6 +61,10 @@ import ContactForm from "../Pages/ContactUs/ContactForm";
         {
           path :'all-employse-list',
           element : <AdminRoute><AllEmployee></AllEmployee></AdminRoute>
+        },
+        {
+          path :'contact-list',
+          element : <AdminRoute><ContactList></ContactList></AdminRoute>
         },
         {
           path :'employee-list',

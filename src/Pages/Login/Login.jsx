@@ -47,8 +47,7 @@ const Login = () => {
                     await axiosPublic.post('/employesData', employeInfo);
                     toast.success('Login success')
                 } catch (error) {
-                    toast.error("Error posting employee data:", error);
-                    toast.error('Failed to create user');
+                   console.log(error);
                 }
                 navigate(location?.state ? location.state : '/');
             })

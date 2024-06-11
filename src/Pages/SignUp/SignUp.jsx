@@ -48,16 +48,17 @@ const SignUp = () => {
                 const result = await createUser(email, password)
                 console.log(result);
                 await updateUserProfile(name, employeImg)
-                navigate('/');
-                toast.success('User created successfully');
+
 
                 // post employe to db
                 const employeInfo = { name, email, role, designation, salary, bank_account, employeImg, status }
                 console.log(employeInfo);
                 try {
                     const response = await axiosPublic.post('/employesData', employeInfo);
-                    if (response.data.insertedID) {
+                    if (response.data.insertedId) {
                         form.reset();
+                        navigate('/');
+                        toast.success('User created successfully');
                     }
                 } catch (error) {
                     toast.error("Error posting employee data:", error);
@@ -194,7 +195,7 @@ const SignUp = () => {
 
                                 <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                     <span>
-                                        {loading ? <PropagateLoader className="mx-auto" color="#ffffff" />: 'Sign Up'
+                                        {loading ? <PropagateLoader className="mx-auto" color="#ffffff" /> : 'Sign Up'
                                         }
                                     </span>
 
