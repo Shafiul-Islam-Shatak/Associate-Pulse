@@ -190,7 +190,7 @@ const MyEmployees = () => {
                                         }
                                     </td>
                                     <td>
-                                        <Link to={`details/${employe._id}`}>
+                                        <Link to={`../details/${employe.email}`}>
                                             <button className="px-5 py-2 font-semibold rounded-full bg-gray-600 text-white">View Details</button>
                                         </Link>
                                     </td>

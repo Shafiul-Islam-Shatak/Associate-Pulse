@@ -15,7 +15,7 @@ const AllEmployee = () => {
 
         }
     })
-    const handleDeleteEmploye = (employe) => {
+    const handleFireEmployee = (employe) => {
         Swal.fire({
             title: "Are you sure?",
             text: "Fire this Employe ?",
@@ -135,13 +135,13 @@ const AllEmployee = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{employe.role === 'HR' || employe.role ==='Admin' ?
+                                    <td>{employe.role === 'HR' || employe.role ==='Admin' || employe.status === 'fired' ?
                                         <></> : <button onClick={() => handleMakeHr(employe)} type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-gray-600 ">Make HR</button>
                                     }</td>
                                     <td>
                                         {
                                             employe.status === 'fired' ?
-                                                <span>Fired</span> : <button onClick={() => handleDeleteEmploye(employe)}
+                                                <span>Fired</span> : <button onClick={() => handleFireEmployee(employe)}
                                                     type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-red-500 ">Fire</button>
                                         }
                                     </td>

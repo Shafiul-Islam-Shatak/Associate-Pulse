@@ -4,14 +4,14 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosPublic from "../../CustomHook/useAxiosPublic";
-import { PropagateLoader } from "react-spinners";
+// import { PropagateLoader } from "react-spinners";
 
 
 
 const SignUp = () => {
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
-    const { createUser, updateUserProfile, loading } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
 
     const handleSignUp = async e => {
         e.preventDefault()
@@ -194,10 +194,11 @@ const SignUp = () => {
                                 </p>
 
                                 <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                    <span>
+                                    {/* <span>
                                         {loading ? <PropagateLoader className="mx-auto" color="#ffffff" /> : 'Sign Up'
                                         }
-                                    </span>
+                                    </span> */}
+                                    Sing up
 
                                 </button>
                             </form>
