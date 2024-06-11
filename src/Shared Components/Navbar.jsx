@@ -11,7 +11,7 @@ const Navbar = () => {
   const navlinks =
     <>
       <li><Link>Home</Link></li>
-      <li><Link>Contact Us</Link></li>
+      <li><Link to='/contact'>Contact Us</Link></li>
     </>
 
   const handleLogout = () => {

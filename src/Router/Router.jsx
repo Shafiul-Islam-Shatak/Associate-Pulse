@@ -16,6 +16,7 @@ import HrRoute from "./HrRoute";
 import MyEmployees from "../Pages/EmployeDashbord/HRdashbord/MyEmployees";
 import EmployeeWorkDetails from "../Pages/EmployeDashbord/HRdashbord/EmployeeWorkDetails";
 import Progress from "../Pages/EmployeDashbord/HRdashbord/Progress";
+import ContactForm from "../Pages/ContactUs/ContactForm";
 
   const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ import Progress from "../Pages/EmployeDashbord/HRdashbord/Progress";
         {
           path :'/secrete',
           element : <PrivateRoute><Secrete></Secrete></PrivateRoute>
+        },
+        {
+          path :'/contact',
+          element : <PrivateRoute><ContactForm></ContactForm></PrivateRoute>
         }
       ]
     },
