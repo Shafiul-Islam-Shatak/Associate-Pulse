@@ -4,6 +4,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosPublic from "../../CustomHook/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 // import { PropagateLoader } from "react-spinners";
 
 
@@ -76,6 +77,9 @@ const SignUp = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Associate-Sign up</title>
+            </Helmet>
             <section className="bg-white dark:bg-gray-900">
                 <div className="flex justify-center min-h-screen">
                     <div

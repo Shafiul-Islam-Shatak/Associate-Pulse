@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from "../../../CustomHook/useAxiosSecure";
 import useAuth from "../../../CustomHook/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const WorkSheet = () => {
     const user = useAuth()
@@ -32,6 +33,9 @@ const WorkSheet = () => {
     }
     return (
         <div>
+             <Helmet>
+                <title>Work Sheet</title>
+            </Helmet>
             <SectionTitle
                 title='Submit Your Task'
                 description='Just give a overview of your completed task'

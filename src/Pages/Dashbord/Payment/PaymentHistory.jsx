@@ -3,6 +3,7 @@ import useAuth from "../../../CustomHook/useAuth";
 import useAxiosSecure from "../../../CustomHook/useAxiosSecure";
 import SectionTitle from "../../../Shared Components/SectionTitle";
 import { ClimbingBoxLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
 
 const PaymentHistory = () => {
     const axiosSecure = useAxiosSecure();
@@ -19,6 +20,9 @@ const PaymentHistory = () => {
     return (
         <div>
             <div>
+            <Helmet>
+                <title>Payment History</title>
+            </Helmet>
                 <SectionTitle
                     title={`Payment History of ${user?.displayName}`}
                     description={`Total trasnsaction ${payments.length}`}

@@ -5,6 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../CustomHook/useAxiosPublic";
 import 'animate.css';
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -58,6 +59,9 @@ const Login = () => {
 
     return (
         <div  className="bg-white dark:bg-gray-900  ">
+             <Helmet>
+                <title>Associate-Login</title>
+            </Helmet>
             <div className="flex justify-center h-screen">
                 <div
                     className="hidden bg-cover lg:block lg:w-2/3"

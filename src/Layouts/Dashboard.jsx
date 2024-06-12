@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link,  Outlet, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import useAdmin from "../CustomHook/useAdmin";
 import AdminNavbar from "../Pages/EmployeDashbord/AdminDashbord/AdminNavbar";
@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaArrowRightToBracket } from "react-icons/fa6";
+import { Helmet } from "react-helmet-async";
 // import AOS from 'aos';
 // import 'aos/dist/aos.css';
 // import { useEffect } from "react";
@@ -44,6 +45,9 @@ const Dashboard = () => {
 
     return (
         <div className="flex">
+             <Helmet>
+                <title>Dashboard</title>
+            </Helmet>
             {/* dashbord navbar */}
             <div className=" min-h-screen ">
                 <div className="drawer lg:drawer-open">
@@ -56,7 +60,7 @@ const Dashboard = () => {
                     <div className="drawer-side">
                         <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                         <ul className="menu p-4 w-64 bg-slate-700 text-white h-fit rounded-r-xl lg:rounded-none lg:min-h-full">
-                           
+
                             <div className="w-40 mb-5 mt-2 lg:mb-10 lg:mt-5">
                                 <Link to='/'><img src="https://i.ibb.co/d754Kxj/whitw-Blue-and-Black-Modern-Digital-Technology-Logo.png" alt="" /></Link>
                             </div>
@@ -76,11 +80,13 @@ const Dashboard = () => {
                                     : isHR ? <HRNavbar></HRNavbar>
                                         : <EmployeeNavbar></EmployeeNavbar>
                             }
+
+                            
                             <div className="mt-10">
                                 <li><h1 onClick={handleLogout} className="font-bold">Log Out                                    <FaArrowRightToBracket className="ml-2"></FaArrowRightToBracket>
                                 </h1></li>
                             </div>
-                        </ul>
+                        </ul>                       
 
                     </div>
                 </div>

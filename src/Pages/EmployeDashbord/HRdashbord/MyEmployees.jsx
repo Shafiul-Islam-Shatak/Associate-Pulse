@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { ClimbingBoxLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
 
 
 const MyEmployees = () => {
@@ -114,6 +115,9 @@ const MyEmployees = () => {
     return (
         <div>
             <div>
+            <Helmet>
+                <title>My Employees</title>
+            </Helmet>
                 <Tooltip id="not-verified" />
                 <Tooltip id="verified" />
                 <SectionTitle

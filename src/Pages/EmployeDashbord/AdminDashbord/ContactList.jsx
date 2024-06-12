@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../CustomHook/useAxiosSecure";
 import SectionTitle from "../../../Shared Components/SectionTitle";
 import ContactCard from "./ContactCard";
 import { ClimbingBoxLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
 
 const ContactList = () => {
     const axiosSecure = useAxiosSecure();
@@ -17,6 +18,9 @@ const ContactList = () => {
     return (
         <div>
             <div>
+            <Helmet>
+                <title>Contact List</title>
+            </Helmet>
                 <SectionTitle
                     title={'Get in touch'}
                     description={'Contact with your people'}

@@ -2,6 +2,7 @@ import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import useAuth from "../../CustomHook/useAuth";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../CustomHook/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 
 const ContactForm = () => {
@@ -27,6 +28,9 @@ const ContactForm = () => {
     }
     return (
         <div className="my-10 lg:my-20 animate__animated animate__bounce animate__delay-2s">
+            <Helmet>
+                <title>Contact Us</title>
+            </Helmet>
             <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-2xl shadow-gray-500 dark:bg-gray-800 lg:max-w-4xl">
                 <div
                     className="hidden bg-cover lg:block lg:w-1/2"

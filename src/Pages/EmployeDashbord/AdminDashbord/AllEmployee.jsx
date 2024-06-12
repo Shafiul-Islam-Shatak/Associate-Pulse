@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../CustomHook/useAxiosSecure";
 import Swal from 'sweetalert2'
 import { CiEdit } from "react-icons/ci";
 import { ClimbingBoxLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
 
 
 const AllEmployee = () => {
@@ -80,6 +81,9 @@ const AllEmployee = () => {
     return (
         <div>
             <div>
+            <Helmet>
+                <title>All Employee</title>
+            </Helmet>
                 <SectionTitle
                     title="Associate Pulse"
                     description={`Total Employees ${employees.length}`}

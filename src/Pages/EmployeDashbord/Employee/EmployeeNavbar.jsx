@@ -1,4 +1,5 @@
 import { BiSolidSpreadsheet } from "react-icons/bi";
+import { FaHome } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
@@ -20,6 +21,14 @@ const EmployeeNavbar = () => {
                         <div className="flex items-center gap-3">
                             <div><MdPayment></MdPayment></div>
                             <div><h2>My Payment</h2></div>
+                        </div>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to='/'>
+                        <div className="flex items-center gap-3">
+                            <div><FaHome></FaHome></div>
+                            <div><h2>Home</h2></div>
                         </div>
                     </NavLink>
                 </li>
