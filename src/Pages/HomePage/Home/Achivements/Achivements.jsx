@@ -3,13 +3,13 @@ import ServiceTamplate from "../../Services/ServiceTamplate";
 
 const Achivements = () => {
     return (
-        <div className="mt-20">
+        <div  className="mt-20">
             <SectionTitle
                 title={'What We Achieved'}
                 description={'Be a partner of our all achievements'}
             ></SectionTitle>
 
-            <div className="w-3/4 mx-auto">
+            <div  className="w-3/4 mx-auto">
                 <ServiceTamplate
                     serviceImg ={'https://img.freepik.com/free-photo/close-up-business-people-hands-together-teamwork-concept_1150-2583.jpg?t=st=1718047855~exp=1718051455~hmac=1836c0ada266a79bf29f9a9a617cd3d7ebf29a1fb45a0465785173464058369d&w=900'}
                     serviceDetails={'In the past two years, We has emerged as the fastest-growing IT company, showcasing exponential expansion in clientele and revenue. Through innovative solutions, strategic partnerships, and agile adaptation, it has carved a niche in the industry, setting new benchmarks for growth and innovation.'}

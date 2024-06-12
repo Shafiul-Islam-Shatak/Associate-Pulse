@@ -10,19 +10,27 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaArrowRightToBracket } from "react-icons/fa6";
-
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
+// import { useEffect } from "react";
 
 
 
 const Dashboard = () => {
-    // TODO : get admin value from db
+
+    // useEffect(() => {
+    //     AOS.init({
+    //         duration: 500
+    //     });
+    // }, [])
+
     const [isAdmin] = useAdmin();
     const [isHR] = useHR();
     const user = useAuth()
     const { logOut } = useContext(AuthContext)
     const navigate = useNavigate()
 
-    console.log(user);
+    // console.log(user);
 
     const handleLogout = () => {
         logOut()
@@ -48,6 +56,7 @@ const Dashboard = () => {
                     <div className="drawer-side">
                         <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                         <ul className="menu p-4 w-64 bg-slate-700 text-white h-fit rounded-r-xl lg:rounded-none lg:min-h-full">
+                           
                             <div className="w-40 mb-5 mt-2 lg:mb-10 lg:mt-5">
                                 <Link to='/'><img src="https://i.ibb.co/d754Kxj/whitw-Blue-and-Black-Modern-Digital-Technology-Logo.png" alt="" /></Link>
                             </div>
@@ -71,7 +80,7 @@ const Dashboard = () => {
                                 <li><h1 onClick={handleLogout} className="font-bold">Log Out                                    <FaArrowRightToBracket className="ml-2"></FaArrowRightToBracket>
                                 </h1></li>
                             </div>
-                        </ul> 
+                        </ul>
 
                     </div>
                 </div>

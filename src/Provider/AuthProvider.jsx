@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
             if (currentUser) {
                 // get token and store client
                 const employInfo = { email: currentUser.email };
-                console.log(employInfo);
+                // console.log(employInfo);
                 await axiosPublic.post('/jwt', employInfo)
                     .then(res => {
                         if (res.data.token) {
@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
                 // remove token
                 localStorage.removeItem('access-token')
             }
-            console.log(currentUser);
+            // console.log(currentUser);
             setLoading(false)
         })
         return () => {

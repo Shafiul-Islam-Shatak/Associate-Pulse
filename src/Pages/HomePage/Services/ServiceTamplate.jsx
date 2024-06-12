@@ -3,9 +3,9 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 const ServiceTamplate = ({ serviceImg, serviceDetails, serviceName, displayFlex }) => {
     const containerClass = `container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 ${displayFlex ? 'lg:flex-row-reverse' : 'lg:flex-row'} lg:justify-between `;
     return (
-        <div>
+        <div data-aos="fade-up">
             <section className="dark:bg-gray-100 dark:text-gray-800">
-                <div className={containerClass}>
+                <div  className={containerClass}>
                     <div className="flex items-center justify-center lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
                         <img src={serviceImg} alt="" className="object-contain rounded-3xl h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128" />
                     </div>

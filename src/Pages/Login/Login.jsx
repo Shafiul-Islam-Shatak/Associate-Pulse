@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../CustomHook/useAxiosPublic";
+import 'animate.css';
+
 
 
 
@@ -55,7 +57,7 @@ const Login = () => {
     }
 
     return (
-        <div className="bg-white dark:bg-gray-900">
+        <div  className="bg-white dark:bg-gray-900  ">
             <div className="flex justify-center h-screen">
                 <div
                     className="hidden bg-cover lg:block lg:w-2/3"

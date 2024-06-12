@@ -9,7 +9,7 @@ const useHR = () => {
         queryKey: [user?.email, 'isHR'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/user/hr/${user.email}`)
-            console.log(res.data);
+            // console.log(res.data);
             return res.data?.hr
         }
     })

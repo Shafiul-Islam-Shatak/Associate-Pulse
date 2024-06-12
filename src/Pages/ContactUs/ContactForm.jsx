@@ -5,6 +5,7 @@ import useAxiosPublic from "../../CustomHook/useAxiosPublic";
 
 
 const ContactForm = () => {
+    
     const axiosPublic =useAxiosPublic()
     const user = useAuth()
     const hanldeContactSubmit = async e => {
@@ -15,7 +16,7 @@ const ContactForm = () => {
         const message = form.message.value;
         const data = { email, name, message }
         const res = await axiosPublic.post('/contact', data);
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.insertedId) {
             toast.success('Your message deliverd to the admin')
             form.reset()
@@ -25,7 +26,7 @@ const ContactForm = () => {
         }
     }
     return (
-        <div className="my-10 lg:my-20">
+        <div className="my-10 lg:my-20 animate__animated animate__bounce animate__delay-2s">
             <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-2xl shadow-gray-500 dark:bg-gray-800 lg:max-w-4xl">
                 <div
                     className="hidden bg-cover lg:block lg:w-1/2"

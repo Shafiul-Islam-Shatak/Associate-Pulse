@@ -3,11 +3,12 @@ import SectionTitle from "../../../Shared Components/SectionTitle";
 import useAxiosSecure from "../../../CustomHook/useAxiosSecure";
 import Swal from 'sweetalert2'
 import { CiEdit } from "react-icons/ci";
+import { ClimbingBoxLoader } from "react-spinners";
 
 
 const AllEmployee = () => {
     const axiosSecure = useAxiosSecure();
-    const { data: employees = [], refetch } = useQuery({
+    const { data: employees = [], refetch, isLoading } = useQuery({
         queryKey: ['employees'],
         queryFn: async () => {
             const res = await axiosSecure.get('/employesData');
@@ -74,6 +75,8 @@ const AllEmployee = () => {
 
 
 
+
+
     return (
         <div>
             <div>
@@ -82,7 +85,15 @@ const AllEmployee = () => {
                     description={`Total Employees ${employees.length}`}
                 ></SectionTitle>
             </div>
+            {isLoading &&
+                <div className="flex justify-center items-center h-screen">
+                    <div className="w-16 h-16">
+                        <ClimbingBoxLoader color="#36d7b7" />
+                    </div>
+                </div>
+            }
             <div className="overflow-x-auto">
+
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -135,7 +146,7 @@ const AllEmployee = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{employe.role === 'HR' || employe.role ==='Admin' || employe.status === 'fired' ?
+                                    <td>{employe.role === 'HR' || employe.role === 'Admin' || employe.status === 'fired' ?
                                         <></> : <button onClick={() => handleMakeHr(employe)} type="button" className="px-5 py-2 font-semibold rounded-full text-white bg-gray-600 ">Make HR</button>
                                     }</td>
                                     <td>

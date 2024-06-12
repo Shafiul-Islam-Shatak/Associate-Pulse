@@ -46,13 +46,13 @@ const SignUp = () => {
                 const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData)
                 const employeImg = data.data.display_url;
                 const result = await createUser(email, password)
-                console.log(result);
+                // console.log(result);
                 await updateUserProfile(name, employeImg)
 
 
                 // post employe to db
                 const employeInfo = { name, email, role, designation, salary, bank_account, employeImg, status }
-                console.log(employeInfo);
+                // console.log(employeInfo);
                 try {
                     const response = await axiosPublic.post('/employesData', employeInfo);
                     if (response.data.insertedId) {
@@ -66,7 +66,7 @@ const SignUp = () => {
                 }
             }
         } catch (err) {
-            console.log(err);
+            // console.log(err);
             toast.error(err.message)
         }
     }

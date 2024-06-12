@@ -3,18 +3,32 @@ import SectionTitle from "../../../Shared Components/SectionTitle";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import useAxiosSecure from "../../../CustomHook/useAxiosSecure";
+import useAuth from "../../../CustomHook/useAuth";
+import toast from "react-hot-toast";
 
 const WorkSheet = () => {
+    const user = useAuth()
     const [startDate, setStartDate] = useState(new Date());
-
-    const handleSubmit = e => {
+    const axiosSecure = useAxiosSecure()
+    const handleSubmit = async e => {
         e.preventDefault()
         const form = e.target;
         const task = form.task.value;
         const hours = form.hours.value;
         const date = form.date.value;
-        const workData = { task, hours, date }
-        console.log(workData);
+        const name = user?.displayName
+        const email = user?.email
+        const workData = { task, hours, date, name, email }
+        // console.log(workData);
+        const res = await axiosSecure.post('/task', workData)
+        if (res.data.insertedId) {
+            toast.success('Your work has been uploaded')
+            form.reset()
+        }
+        else {
+            toast.error('Failed to upload task')
+        }
     }
     return (
         <div>

@@ -11,9 +11,13 @@ const HrRoute = ({children}  ) => {
     const { user, loading } = useContext(AuthContext);
     const location = useLocation();
     if (loading || isHRLoading) {
-        return <div>
-            <div className="w-16 mx-auto mt-50 h-16"><ClimbingBoxLoader color="#36d7b7" /></div>
-        </div>
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="w-16 h-16">
+                    <ClimbingBoxLoader color="#36d7b7" />
+                </div>
+            </div>
+        )
     }
     if (user && isHR) {
         return children;

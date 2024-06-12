@@ -10,6 +10,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { ClimbingBoxLoader } from "react-spinners";
 
 
 const MyEmployees = () => {
@@ -17,7 +18,7 @@ const MyEmployees = () => {
     const [selectedEmploye, setSelectedEmploye] = useState(null);
     const modalRef = useRef(null);
     const axiosSecure = useAxiosSecure();
-    const { data: employees = [], refetch } = useQuery({
+    const { data: employees = [], refetch, isLoading } = useQuery({
         queryKey: ['employees'],
         queryFn: async () => {
             const res = await axiosSecure.get('/myEmployess');
@@ -121,6 +122,13 @@ const MyEmployees = () => {
                 ></SectionTitle>
             </div>
             <div className="overflow-x-auto">
+            {isLoading &&
+                <div className="flex justify-center items-center h-screen">
+                    <div className="w-16 h-16">
+                        <ClimbingBoxLoader color="#36d7b7" />
+                    </div>
+                </div>
+            }
                 <table className="table">
                     {/* head */}
                     <thead>
