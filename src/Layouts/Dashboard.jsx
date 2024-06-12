@@ -11,6 +11,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
+import SectionTitle from "../Shared Components/SectionTitle";
 // import AOS from 'aos';
 // import 'aos/dist/aos.css';
 // import { useEffect } from "react";
@@ -49,7 +50,7 @@ const Dashboard = () => {
                 <title>Dashboard</title>
             </Helmet>
             {/* dashbord navbar */}
-            <div className=" min-h-screen ">
+            <div className=" min-h-screen z-50 ">
                 <div className="drawer lg:drawer-open">
                     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content absolute  flex flex-col items-center justify-center">
@@ -94,7 +95,9 @@ const Dashboard = () => {
 
             {/* dashbord content */}
             <div className="flex-1">
-                <Outlet></Outlet>
+             
+                <Outlet>
+                </Outlet>
             </div>
 
 
