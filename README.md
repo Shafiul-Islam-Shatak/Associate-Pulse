@@ -1,8 +1,18 @@
-# React + Vite
+ 1. website name : Associate-Pulse
+ 2. Live url : https://associate-pulse.web.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Feature :
+ 1. You can create account buy google & email and password
+ 2. You can join as employee and HR.
+ 3. There is three role in this site Employee, HR and Admin.
+ 4. As a guest you can contact us from contact page.
+ 5. Employee can see his/her payment history. 
+ 6. Employee can post the task that he/she has done.
+ 7. HR Can see his employee list.
+ 8. HR Can update new employee verification, he can verified a employee
+ 9. HR Can Pay a employee salary
+ 10. HR Can see the task done by employees
+ 11. Admin can see all verified employee list
+ 12. Admin can fire a employee and HR also
+ 13. Admin can see the all message that comes from contact us form
+ 
