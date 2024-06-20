@@ -1,4 +1,4 @@
-import { Link,  Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import useAdmin from "../CustomHook/useAdmin";
 import AdminNavbar from "../Pages/EmployeDashbord/AdminDashbord/AdminNavbar";
@@ -11,7 +11,8 @@ import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
-import SectionTitle from "../Shared Components/SectionTitle";
+import MyEmployees from "../Pages/EmployeDashbord/HRdashbord/MyEmployees";
+// import SectionTitle from "../Shared Components/SectionTitle";
 // import AOS from 'aos';
 // import 'aos/dist/aos.css';
 // import { useEffect } from "react";
@@ -46,7 +47,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex">
-             <Helmet>
+            <Helmet>
                 <title>Dashboard</title>
             </Helmet>
             {/* dashbord navbar */}
@@ -82,12 +83,12 @@ const Dashboard = () => {
                                         : <EmployeeNavbar></EmployeeNavbar>
                             }
 
-                            
+
                             <div className="mt-10">
                                 <li><h1 onClick={handleLogout} className="font-bold">Log Out                                    <FaArrowRightToBracket className="ml-2"></FaArrowRightToBracket>
                                 </h1></li>
                             </div>
-                        </ul>                       
+                        </ul>
 
                     </div>
                 </div>
@@ -95,8 +96,11 @@ const Dashboard = () => {
 
             {/* dashbord content */}
             <div className="flex-1">
-             
+
                 <Outlet>
+                {
+                    isHR && <MyEmployees></MyEmployees>
+                }
                 </Outlet>
             </div>
 

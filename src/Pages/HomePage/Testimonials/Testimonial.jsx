@@ -10,7 +10,7 @@ import SectionTitle from '../../../Shared Components/SectionTitle';
 
 const Testimonial = () => {
     return (
-        <div className='w-3/4 mx-auto'>
+        <div className='w-3/4 md:w-1/2 lg:w-3/4 mx-auto'>
             <SectionTitle
             title='Our Testimonials'
             description = 'Something About Our Company'
