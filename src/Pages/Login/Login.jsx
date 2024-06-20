@@ -28,7 +28,10 @@ const Login = () => {
             toast.success('Login success');
             navigate(location?.state || '/');
         } catch (error) {
-            toast.error(error.message);
+            if (error.code === 'auth/invalid-credential') {
+
+                toast.error("Email and Password Doesn't match ");
+            }
             console.log(error)
         }
     }
@@ -43,14 +46,14 @@ const Login = () => {
                     salary: 10000,
                     bank_account: '42414245215',
                     employeImg: result.user?.photoURL,
-                    status : 'Not verified'
+                    status: 'Not verified'
                 }
                 // console.log(employeInfo);
                 try {
                     await axiosPublic.post('/employesData', employeInfo);
                     toast.success('Login success')
                 } catch (error) {
-                   console.log(error);
+                    console.log(error);
                 }
                 navigate(location?.state ? location.state : '/');
             })
@@ -58,8 +61,8 @@ const Login = () => {
     }
 
     return (
-        <div  className="bg-white dark:bg-gray-900  ">
-             <Helmet>
+        <div className="bg-white dark:bg-gray-900  ">
+            <Helmet>
                 <title>Associate-Login</title>
             </Helmet>
             <div className="flex justify-center h-screen">

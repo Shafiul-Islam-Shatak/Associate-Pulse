@@ -214,7 +214,6 @@ const MyEmployees = () => {
                         {/* row 1 */}
                     </tbody>
                 </table>
-                {/* You can open the modal using document.getElementById('ID').showModal() method */}
                 <dialog id="my_modal_3" className="modal" ref={modalRef}>
                     <div className="modal-box">
 
