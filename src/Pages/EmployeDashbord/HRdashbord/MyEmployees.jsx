@@ -12,9 +12,14 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { ClimbingBoxLoader } from "react-spinners";
 import { Helmet } from "react-helmet-async";
+import { loadStripe } from "@stripe/stripe-js";
+import { CardElement, Elements, useElements, useStripe } from "@stripe/react-stripe-js";
 
 
+const stripPromis = loadStripe(import.meta.env.VITE_STRIPE_KEY)
 const MyEmployees = () => {
+    const stripe = useStripe();
+    const elements = useElements();
     const [startDate, setStartDate] = useState(new Date());
     const [selectedEmploye, setSelectedEmploye] = useState(null);
     const modalRef = useRef(null);
@@ -63,7 +68,7 @@ const MyEmployees = () => {
         }
     };
 
-    const handleConfirmPayment = event => {
+    const handleConfirmPayment = async (event) => {
         event.preventDefault()
         const form = event.target;
         const name = form.name.value;
@@ -73,6 +78,11 @@ const MyEmployees = () => {
         const month = form.month.value;
         const paymentInfo = { name, email, salary, bank_account, month }
         handleCloseModal()
+        if (!stripe || !elements) {
+            // Stripe.js has not loaded yet. Make sure to disable
+            // form submission until Stripe.js has loaded.
+            return;
+          }
 
         Swal.fire({
             title: "Are you sure?",
@@ -116,9 +126,9 @@ const MyEmployees = () => {
     return (
         <div>
             <div>
-            <Helmet>
-                <title>My Employees</title>
-            </Helmet>
+                <Helmet>
+                    <title>My Employees</title>
+                </Helmet>
                 <Tooltip id="not-verified" />
                 <Tooltip id="verified" />
                 <SectionTitle
@@ -127,13 +137,13 @@ const MyEmployees = () => {
                 ></SectionTitle>
             </div>
             <div className="overflow-x-auto">
-            {isLoading &&
-                <div className="flex justify-center items-center h-screen">
-                    <div className="w-16 h-16">
-                        <ClimbingBoxLoader color="#36d7b7" />
+                {isLoading &&
+                    <div className="flex justify-center items-center h-screen">
+                        <div className="w-16 h-16">
+                            <ClimbingBoxLoader color="#36d7b7" />
+                        </div>
                     </div>
-                </div>
-            }
+                }
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -220,70 +230,88 @@ const MyEmployees = () => {
                         {/* if there is a button in form, it will close the modal */}
                         <button onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                         <h3 className="font-bold text-lg">Make Payment</h3>
+                        <Elements stripe={stripPromis}>
 
-                        <form onSubmit={handleConfirmPayment} >
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Employee Name</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={selectedEmploye?.name}
-                                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                                />
-                            </div>
-                            <div>
-                                <label className=" mb-2 text-sm text-gray-600 dark:text-gray-200 hidden">Employee email</label>
-                                <input
-                                    type="text"
-                                    name="email"
-                                    value={selectedEmploye?.email}
-                                    className="hidden  w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                                />
-                            </div>
-                            
-
-                            <div className="mt-6">
-                                <div className="flex justify-between mb-2">
-                                    <label className="text-sm text-gray-600 dark:text-gray-200">Bank Account</label>
-
+                            <form onSubmit={handleConfirmPayment} >
+                                <div>
+                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Employee Name</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={selectedEmploye?.name}
+                                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    />
                                 </div>
-                                <input
-                                    type="text"
-                                    name="bank_account"
-                                    value={selectedEmploye?.bank_account}
-                                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                                />
-                            </div>
-                            <div className="mt-6">
-                                <div className="flex justify-between mb-2">
-                                    <label className="text-sm text-gray-600 dark:text-gray-200">Salary</label>
-
+                                <div>
+                                    <label className=" mb-2 text-sm text-gray-600 dark:text-gray-200 hidden">Employee email</label>
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        value={selectedEmploye?.email}
+                                        className="hidden  w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    />
                                 </div>
-                                <input
-                                    type="text"
-                                    name="salary"
-                                    value={selectedEmploye?.salary}
-                                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                                />
-                            </div>
 
-                            <div className="flex flex-col">
-                                <label className="text-gray-700 dark:text-gray-200">Select Month</label>
-                                <DatePicker
-                                    selected={startDate}
-                                    onChange={(date) => setStartDate(date)}
-                                    dateFormat="MM/yyyy"
-                                    showMonthYearPicker
-                                    name="month"
-                                    className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+
+                                <div className="mt-6">
+                                    <div className="flex justify-between mb-2">
+                                        <label className="text-sm text-gray-600 dark:text-gray-200">Bank Account</label>
+
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="bank_account"
+                                        value={selectedEmploye?.bank_account}
+                                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    />
+                                </div>
+                                <div className="mt-6">
+                                    <div className="flex justify-between mb-2">
+                                        <label className="text-sm text-gray-600 dark:text-gray-200">Salary</label>
+
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="salary"
+                                        value={selectedEmploye?.salary}
+                                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    />
+                                </div>
+
+                                <div className="flex flex-col">
+                                    <label className="text-gray-700 dark:text-gray-200">Select Month</label>
+                                    <DatePicker
+                                        selected={startDate}
+                                        onChange={(date) => setStartDate(date)}
+                                        dateFormat="MM/yyyy"
+                                        showMonthYearPicker
+                                        name="month"
+                                        className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                    />
+                                </div>
+                                <CardElement
+                                    options={{
+                                        style: {
+                                            base: {
+                                                fontSize: '16px',
+                                                color: '#424770',
+                                                '::placeholder': {
+                                                    color: '#aab7c4',
+                                                },
+                                            },
+                                            invalid: {
+                                                color: '#9e2146',
+                                            },
+                                        },
+                                    }}
                                 />
-                            </div>
-                            <div className="mt-6">
-                                <button type="submit" className="w-full px-4 py-2 bg-gray-600 text-white">
-                                    Confirm Payment
-                                </button>
-                            </div>
-                        </form>
+                                <div className="mt-6">
+                                    <button disabled={!stripe} type="submit" className="w-full px-4 py-2 bg-gray-600 text-white">
+                                        Confirm Payment
+                                    </button>
+                                </div>
+                            </form>
+                        </Elements>
                     </div>
                 </dialog>
             </div >
