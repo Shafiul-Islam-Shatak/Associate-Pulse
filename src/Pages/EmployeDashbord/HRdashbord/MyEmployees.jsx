@@ -12,14 +12,11 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { ClimbingBoxLoader } from "react-spinners";
 import { Helmet } from "react-helmet-async";
-import { loadStripe } from "@stripe/stripe-js";
-import { CardElement, Elements, useElements, useStripe } from "@stripe/react-stripe-js";
 
 
-const stripPromis = loadStripe(import.meta.env.VITE_STRIPE_KEY)
+
 const MyEmployees = () => {
-    const stripe = useStripe();
-    const elements = useElements();
+
     const [startDate, setStartDate] = useState(new Date());
     const [selectedEmploye, setSelectedEmploye] = useState(null);
     const modalRef = useRef(null);
@@ -78,12 +75,7 @@ const MyEmployees = () => {
         const month = form.month.value;
         const paymentInfo = { name, email, salary, bank_account, month }
         handleCloseModal()
-        if (!stripe || !elements) {
-            // Stripe.js has not loaded yet. Make sure to disable
-            // form submission until Stripe.js has loaded.
-            return;
-          }
-
+       
         Swal.fire({
             title: "Are you sure?",
             text: `Are you sure to pay ${salary} BDT to ${name}`,
@@ -230,7 +222,7 @@ const MyEmployees = () => {
                         {/* if there is a button in form, it will close the modal */}
                         <button onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                         <h3 className="font-bold text-lg">Make Payment</h3>
-                        <Elements stripe={stripPromis}>
+
 
                             <form onSubmit={handleConfirmPayment} >
                                 <div>
@@ -289,29 +281,14 @@ const MyEmployees = () => {
                                         className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                     />
                                 </div>
-                                <CardElement
-                                    options={{
-                                        style: {
-                                            base: {
-                                                fontSize: '16px',
-                                                color: '#424770',
-                                                '::placeholder': {
-                                                    color: '#aab7c4',
-                                                },
-                                            },
-                                            invalid: {
-                                                color: '#9e2146',
-                                            },
-                                        },
-                                    }}
-                                />
+            
                                 <div className="mt-6">
-                                    <button disabled={!stripe} type="submit" className="w-full px-4 py-2 bg-gray-600 text-white">
+                                    <button  type="submit" className="w-full px-4 py-2 bg-gray-600 text-white">
                                         Confirm Payment
                                     </button>
                                 </div>
                             </form>
-                        </Elements>
+
                     </div>
                 </dialog>
             </div >
