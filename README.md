@@ -18,6 +18,6 @@ Feature :
 
 After Clone :
 1. install npm
-2. install need do add some key. in .evn.local
+2. have to provide some keys. in .evn.local
 3. Please provide Firebase authentication key
 4. install others dependencies. you can find them from package.json file
