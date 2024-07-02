@@ -15,4 +15,9 @@ Feature :
  11. Admin can see all verified employee list
  12. Admin can fire a employee and HR also
  13. Admin can see the all message that comes from contact us form
- 
+
+After Clone :
+1. install npm
+2. install need do add some key. in .evn.local
+3. Please provide Firebase authentication key
+4. install others dependencies. you can find them from package.json file
