@@ -12,13 +12,13 @@ const Testimonial = () => {
     return (
         <div className='w-3/4 md:w-1/2 lg:w-3/4 mx-auto'>
             <SectionTitle
-            title='Our Testimonials'
-            description = 'Something About Our Company'
-            
+                title='Our Testimonials'
+                description='Something About Our Company'
+
             ></SectionTitle>
 
             <Swiper
-                  modules={[Navigation, Pagination, Scrollbar, A11y]}
+                modules={[Navigation, Pagination, Scrollbar, A11y]}
                 spaceBetween={50}
                 slidesPerView={1}
                 // onSlideChange={() => console.log('slide change')}
@@ -26,6 +26,12 @@ const Testimonial = () => {
                 pagination={{ clickable: true }}
                 breakpoints={{
                     1024: {
+                        slidesPerView: 1,
+                    },
+                    1440: {
+                        slidesPerView: 2,
+                    },
+                    2560: {
                         slidesPerView: 3,
                     }
                 }}

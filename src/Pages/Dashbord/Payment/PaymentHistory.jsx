@@ -49,7 +49,7 @@ const PaymentHistory = () => {
     };
 
     return (
-        <div>
+        <div className="dark:text-black">
             <Helmet>
                 <title>Payment History</title>
             </Helmet>
@@ -96,7 +96,7 @@ const PaymentHistory = () => {
                         </button>
                     ))}
                     <button onClick={handleNextPage} className="bg-slate-200 btn ml-2">Next</button>
-                    <select value={iteamPerPage} onChange={handleIteamPerPage}>
+                    <select className="dark:bg-white" value={iteamPerPage} onChange={handleIteamPerPage}>
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="20">20</option>

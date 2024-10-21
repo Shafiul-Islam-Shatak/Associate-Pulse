@@ -16,7 +16,7 @@ const ContactList = () => {
         }
     })
     return (
-        <div>
+        <div className="dark:text-black">
             <div>
             <Helmet>
                 <title>Contact List</title>

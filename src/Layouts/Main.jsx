@@ -15,7 +15,9 @@ const Main = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <div className="dark:bg-white">
+                <Outlet></Outlet>
+            </div>
             <Footer></Footer>
         </div>
     );

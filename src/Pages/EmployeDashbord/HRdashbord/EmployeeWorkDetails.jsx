@@ -24,7 +24,7 @@ const EmployeeWorkDetails = () => {
     console.log(payment);
 
     return (
-        <div>
+        <div className="dark:text-black">
 
             {
                 isLoading &&

@@ -142,7 +142,7 @@ const AllEmployee = () => {
 
 
     return (
-        <div>
+        <div className="dark:text-black">
             <div>
                 <Helmet>
                     <title>All Employee</title>
@@ -200,7 +200,7 @@ const AllEmployee = () => {
                                                     {index + 1}
                                                 </td>
                                                 <td>
-                                                    <div className="flex items-center gap-3">
+                                                    <div className="flex items-center gap-3 ">
                                                         <div className="avatar">
                                                             <div className="mask mask-squircle w-12 h-12">
                                                                 <img src={employe.employeImg} alt={employe.name} />
@@ -257,7 +257,7 @@ const AllEmployee = () => {
                             employees.map((employe) =>
                                 <div key={employe._id} >
 
-                                    <div className="card w-80 bg-base-100 shadow-xl">
+                                    <div className="card w-80 bg-base-100 shadow-xl dark:bg-white">
                                         <div className="card-body">
                                             <div className="avatar">
                                                 <div className="w-24 rounded-xl">
@@ -302,12 +302,12 @@ const AllEmployee = () => {
 
                         <form onSubmit={handleUpdateSalary} >
                             <div>
-                                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Update Salary</label>
+                                <label className="block mb-2 text-sm text-gray-600 ">Update Salary</label>
                                 <input
                                     type="number"
                                     name="new_salary"
                                     defaultValue={selectedEmploye?.salary}
-                                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                 />
                             </div>
                             <div className="mt-6">

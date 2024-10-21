@@ -116,7 +116,7 @@ const MyEmployees = () => {
 
 
     return (
-        <div>
+        <div className="dark:text-black">
             <div>
                 <Helmet>
                     <title>My Employees</title>
@@ -226,59 +226,59 @@ const MyEmployees = () => {
 
                             <form onSubmit={handleConfirmPayment} >
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Employee Name</label>
+                                    <label className="block mb-2 text-sm text-gray-600 ">Employee Name</label>
                                     <input
                                         type="text"
                                         name="name"
                                         value={selectedEmploye?.name}
-                                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg  focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
                                 </div>
                                 <div>
-                                    <label className=" mb-2 text-sm text-gray-600 dark:text-gray-200 hidden">Employee email</label>
+                                    <label className=" mb-2 text-sm text-gray-600  hidden">Employee email</label>
                                     <input
                                         type="text"
                                         name="email"
                                         value={selectedEmploye?.email}
-                                        className="hidden  w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="hidden  w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg     focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
                                 </div>
 
 
                                 <div className="mt-6">
                                     <div className="flex justify-between mb-2">
-                                        <label className="text-sm text-gray-600 dark:text-gray-200">Bank Account</label>
+                                        <label className="text-sm text-gray-600 ">Bank Account</label>
 
                                     </div>
                                     <input
                                         type="text"
                                         name="bank_account"
                                         value={selectedEmploye?.bank_account}
-                                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg  focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
                                 </div>
                                 <div className="mt-6">
                                     <div className="flex justify-between mb-2">
-                                        <label className="text-sm text-gray-600 dark:text-gray-200">Salary</label>
+                                        <label className="text-sm text-gray-600 ">Salary</label>
 
                                     </div>
                                     <input
                                         type="text"
                                         name="salary"
                                         value={selectedEmploye?.salary}
-                                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
                                 </div>
 
                                 <div className="flex flex-col">
-                                    <label className="text-gray-700 dark:text-gray-200">Select Month</label>
+                                    <label className="text-gray-700 ">Select Month</label>
                                     <DatePicker
                                         selected={startDate}
                                         onChange={(date) => setStartDate(date)}
                                         dateFormat="MM/yyyy"
                                         showMonthYearPicker
                                         name="month"
-                                        className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                        className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                                     />
                                 </div>
             

@@ -80,7 +80,7 @@ const SignUp = () => {
             <Helmet>
                 <title>Associate-Sign up</title>
             </Helmet>
-            <section className="bg-white dark:bg-gray-900">
+            <section className="bg-white ">
                 <div className="flex justify-center min-h-screen">
                     <div
                         className="hidden bg-cover lg:block lg:w-2/5"
@@ -92,28 +92,28 @@ const SignUp = () => {
                             <div className="mx-auto">
                                 <img src="https://i.ibb.co/hs3dnWn/associate-pule-new-logo.png" alt="" />
                             </div>
-                            <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
+                            <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize ">
                                 Aww, I can see your excitement to be our member!
                             </h1>
 
-                            <p className="mt-4 text-gray-500 dark:text-gray-400">
+                            <p className="mt-4 text-gray-500 ">
                                 Let’s get you all set up so you can verify your personal account and begin setting up your profile.
                             </p>
 
                             <form onSubmit={handleSignUp} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Your Name</label>
+                                    <label className="block mb-2 text-sm text-gray-600 ">Your Name</label>
                                     <input
                                         type="text"
                                         name="name"
                                         placeholder="John doe"
-                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
 
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Your Role</label>
+                                    <label className="block mb-2 text-sm text-gray-600 ">Your Role</label>
                                     <select defaultValue='Employee'
                                         name="role"
                                         className="select select-bordered w-full max-w-xs">
@@ -126,50 +126,50 @@ const SignUp = () => {
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Bank Account No</label>
+                                    <label className="block mb-2 text-sm text-gray-600 ">Bank Account No</label>
                                     <input
                                         type="text"
                                         name="bank_account"
                                         placeholder="XXX-XX-XXXX-XXX"
-                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg  focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
 
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Your Salary</label>
+                                    <label className="block mb-2 text-sm text-gray-600 ">Your Salary</label>
                                     <input
                                         type="number"
                                         name="salary"
                                         placeholder="10,000"
-                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
 
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
+                                    <label className="block mb-2 text-sm text-gray-600 ">Email address</label>
                                     <input
                                         type="email"
                                         name="email"
                                         placeholder="johnsnow@example.com"
-                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
 
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Password</label>
+                                    <label className="block mb-2 text-sm text-gray-600 ">Password</label>
                                     <input
                                         type="password"
                                         name="password"
                                         placeholder="Enter your password"
-                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
 
                                 </div>
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Designation</label>
+                                    <label className="block mb-2 text-sm text-gray-600 ">Designation</label>
                                     <select defaultValue='N/A'
                                         name="designation"
                                         className="select select-bordered w-full max-w-xs">
@@ -183,12 +183,12 @@ const SignUp = () => {
 
                                 </div>
                                 <div>
-                                    <fieldset className="w-full space-y-1 dark:text-gray-800">
-                                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Photo</label>
+                                    <fieldset className="w-full space-y-1 ">
+                                        <label className="block mb-2 text-sm text-gray-600 ">Photo</label>
                                         <div className="flex">
                                             <input type="file"
                                                 name="image"
-                                                id="" className="px-3 py-2 border-2 border-dashed rounded-md dark:border-gray-300 dark:text-gray-600 dark:bg-gray-100" />
+                                                id="" className="px-3 py-2 border-2 border-dashed rounded-md   " />
                                         </div>
                                     </fieldset>
 

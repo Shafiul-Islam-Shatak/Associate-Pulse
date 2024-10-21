@@ -3,7 +3,7 @@ import ServiceTamplate from "./ServiceTamplate";
 
 const Services = () => {
     return (
-        <div className="w-3/4 mx-auto">
+        <div className="w-3/4 mx-auto dark:text-black">
             <SectionTitle
             description = 'Take our services as you need'
             title = 'Our Services'

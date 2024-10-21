@@ -41,7 +41,7 @@ const WorkSheet = () => {
         }
     }
     return (
-        <div>
+        <div className="dark:text-black">
             <Helmet>
                 <title>Work Sheet</title>
             </Helmet>
@@ -50,14 +50,14 @@ const WorkSheet = () => {
                 description='Just give a overview of your completed task'
             ></SectionTitle>
             <div>
-                <section className="max-w-4xl p-6 mx-auto  rounded-md mt-10">
+                <section className="max-w-4xl p-6 mx-auto  rounded-md mt-10 ">
                     <h1 className="text-center font-bold text-2xl my-5">Upload your recent completed Task</h1>
                     <form onSubmit={handleSubmit} className="flex flex-wrap items-center gap-4">
                         <div className="flex flex-col">
-                            <label className="text-gray-700 dark:text-gray-200" htmlFor="task">Task</label>
+                            <label className="text-gray-700 dark:bg-white " htmlFor="task">Task</label>
                             <select
                                 name="task"
-                                className="select select-bordered w-full ">
+                                className="select select-bordered w-full dark:bg-white ">
                                 <option disabled selected>Selecet Task</option>
                                 <option value='Sales'>Sales</option>
                                 <option value='Support'>Support</option>
@@ -68,14 +68,14 @@ const WorkSheet = () => {
                         </div>
 
                         <div className="flex flex-col">
-                            <label className="text-gray-700 dark:text-gray-200" htmlFor="hours">Hours Worked (hr)</label>
-                            <input name="hours" type="number" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                            <label className="text-gray-700 " htmlFor="hours">Hours Worked (hr)</label>
+                            <input name="hours" type="number" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring" />
                         </div>
 
                         <div className="flex flex-col">
-                            <label className="text-gray-700 dark:text-gray-200" >Select Date</label>
+                            <label className="text-gray-700 " >Select Date</label>
                             <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} dateFormat='dd/MM/yyyy'
-                                name="date" className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                name="date" className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring" />
                         </div>
 
                         <div className="flex justify-end mt-6">
