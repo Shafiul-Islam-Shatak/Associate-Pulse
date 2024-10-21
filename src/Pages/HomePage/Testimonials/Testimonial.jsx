@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y , Autoplay } from 'swiper/modules';
 
 
 // Import Swiper styles
@@ -18,12 +18,16 @@ const Testimonial = () => {
             ></SectionTitle>
 
             <Swiper
-                modules={[Navigation, Pagination, Scrollbar, A11y]}
+                modules={[Navigation, Pagination, Scrollbar, A11y , Autoplay]}
                 spaceBetween={50}
                 slidesPerView={1}
                 // onSlideChange={() => console.log('slide change')}
                 // onSwiper={(swiper) => console.log(swiper)}
                 pagination={{ clickable: true }}
+                autoplay={{
+                    delay: 5000, 
+                    disableOnInteraction: false, 
+                }}
                 breakpoints={{
                     1024: {
                         slidesPerView: 1,
