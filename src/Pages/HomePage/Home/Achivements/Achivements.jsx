@@ -3,7 +3,7 @@ import ServiceTamplate from "../../Services/ServiceTamplate";
 
 const Achivements = () => {
     return (
-        <div  className="mt-20 dark:text-black">
+        <div  className="mt-20 ">
             <SectionTitle
                 title={'What We Achieved'}
                 description={'Be a partner of our all achievements'}

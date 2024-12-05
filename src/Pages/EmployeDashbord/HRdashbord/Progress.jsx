@@ -31,7 +31,7 @@ const Progress = () => {
         setSelectedMonth('')
     }
     return (
-        <div className="dark:text-black">
+        <div className="">
             <div>
                 <Helmet>
                     <title>Progress</title>
@@ -58,7 +58,7 @@ const Progress = () => {
                     <select
                         value={selectedEmployee}
                         onChange={(e) => setSelectedEmployee(e.target.value)}
-                        className="mx-2 input input-bordered dark:bg-white"
+                        className="mx-2 input input-bordered "
                     >
                         <option value="">Select Employee</option>
                         {/* Populate dropdown with employee names */}
@@ -73,7 +73,7 @@ const Progress = () => {
                     <select
                         value={selectedMonth}
                         onChange={(e) => setSelectedMonth(e.target.value)}
-                        className="mx-2 input input-bordered dark:bg-white "
+                        className="mx-2 input input-bordered  "
                     >
                         <option value="">Select Month</option>
                         {/* Populate dropdown with months (you can customize this based on your data structure) */}
@@ -92,7 +92,7 @@ const Progress = () => {
                         {/* Add more months as needed */}
                     </select>
 
-                    <button onClick={handleclear} className="btn btn-active btn-neutral dark:bg-white">Clear filter</button>
+                    <button onClick={handleclear} className="btn btn-active btn-neutral ">Clear filter</button>
                 </div>
                 <table className="table">
                     {/* head */}

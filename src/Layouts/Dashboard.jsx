@@ -95,7 +95,7 @@ const Dashboard = () => {
             </div>
 
             {/* dashbord content */}
-            <div className="flex-1 dark:bg-white">
+            <div className="flex-1 ">
 
                 <Outlet>
                 {

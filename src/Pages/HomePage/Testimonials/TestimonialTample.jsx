@@ -1,7 +1,7 @@
 
 const TestimonialTample = ({review , name , image, designation}) => {
     return (
-        <div data-aos="fade-up-right" className="dark:text-black mx-auto">
+        <div data-aos="fade-up-right" className=" mx-auto">
             <div className="flex flex-col gap-x-5 bg-slate-100 mx-auto lg:w-[500px] lg:h-[450px] my-6 shadow-lg">
                 <div className="px-4 py-12 rounded-t-lg sm:px-8 md:px-12 ">
                     <p className="relative px-6 py-1 text-lg italic text-center ">

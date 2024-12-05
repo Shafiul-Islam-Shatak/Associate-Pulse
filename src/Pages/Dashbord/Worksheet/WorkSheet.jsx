@@ -41,7 +41,7 @@ const WorkSheet = () => {
         }
     }
     return (
-        <div className="dark:text-black">
+        <div className="">
             <Helmet>
                 <title>Work Sheet</title>
             </Helmet>
@@ -54,10 +54,10 @@ const WorkSheet = () => {
                     <h1 className="text-center font-bold text-2xl my-5">Upload your recent completed Task</h1>
                     <form onSubmit={handleSubmit} className="flex flex-wrap items-center gap-4">
                         <div className="flex flex-col">
-                            <label className="text-gray-700 dark:bg-white " htmlFor="task">Task</label>
+                            <label className="text-gray-700  " htmlFor="task">Task</label>
                             <select
                                 name="task"
-                                className="select select-bordered w-full dark:bg-white ">
+                                className="select select-bordered w-full  ">
                                 <option disabled selected>Selecet Task</option>
                                 <option value='Sales'>Sales</option>
                                 <option value='Support'>Support</option>

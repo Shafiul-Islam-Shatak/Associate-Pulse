@@ -116,7 +116,7 @@ const MyEmployees = () => {
 
 
     return (
-        <div className="dark:text-black">
+        <div className="">
             <div>
                 <Helmet>
                     <title>My Employees</title>

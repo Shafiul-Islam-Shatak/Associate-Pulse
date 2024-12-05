@@ -142,7 +142,7 @@ const AllEmployee = () => {
 
 
     return (
-        <div className="dark:text-black">
+        <div className="">
             <div>
                 <Helmet>
                     <title>All Employee</title>
@@ -257,7 +257,7 @@ const AllEmployee = () => {
                             employees.map((employe) =>
                                 <div key={employe._id} >
 
-                                    <div className="card w-80 bg-base-100 shadow-xl dark:bg-white">
+                                    <div className="card w-80 bg-base-100 shadow-xl ">
                                         <div className="card-body">
                                             <div className="avatar">
                                                 <div className="w-24 rounded-xl">
